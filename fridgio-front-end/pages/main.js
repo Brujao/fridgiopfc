@@ -4,7 +4,7 @@ console.disableYellowBox = true;
 
 import Register from './register.js'
 
-export default class Login extends React.Component {
+export default class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,34 +25,6 @@ export default class Login extends React.Component {
           source={require('./my-icon.png')}
           style={{resizeMode: 'contain',width:220}}
         />
-
-        <View>
-          <TextInput
-            style={styles.input}
-            ref={(el) => { this.username = el; }}
-            onChangeText={(username) => this.setState({username})}
-            value={this.state.username}
-            placeholder="Digite seu Login"
-          />
-
-          <TextInput
-            style={styles.input}
-            ref={(el) => { this.senha = el; }}
-            onChangeText={(senha) => this.setState({senha})}
-            value={this.state.senha}
-            placeholder="Digite sua Senha"
-          />
-
-          <Button
-            //onPress={this.login.bind(this)}
-            title="Login"
-            color="#7920FF"
-          />
-        </View>
-
-        <Text style={styles.link} onPress={() => this.props.navigation.navigate('Register')}>
-          Criar conta
-        </Text>
 
       </View>
 </KeyboardAvoidingView>

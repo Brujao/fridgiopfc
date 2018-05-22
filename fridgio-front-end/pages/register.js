@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput,Button, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View, TextInput,Button, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView} from 'react-native';
 console.disableYellowBox = true;
 
 import Register from './register.js'
@@ -65,7 +65,7 @@ export default class Login extends React.Component {
 
   addUser() {
 
-    this.props.navigation.navigate('Home');
+    //this.props.navigation.navigate('Home');
 
     this.username.clear();
     this.email.clear();
@@ -77,7 +77,7 @@ export default class Login extends React.Component {
         "senha":this.state.senha,
     }
 
-      fetch("http://192.168.41.220:3000/usuarios/add", {
+      fetch("http://192.168.15.10:3000/usuarios/add", {
          method: "POST",
          headers: {
            'Accept': 'application/json',
@@ -85,11 +85,11 @@ export default class Login extends React.Component {
          },
          body:  JSON.stringify(data)
       })
-      .then((res)=>{
-        res.json();
+      .then((response)=>{
+         return response.json();
       })
-      .then((data)=>{
-      console.log(data);
+      .then((res)=>{
+        console.log(res);
       });
   }
 
