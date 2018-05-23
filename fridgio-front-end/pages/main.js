@@ -1,36 +1,31 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput,Button, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
+import {StackNavigator, TabNavigator} from 'react-navigation';
 console.disableYellowBox = true;
 
-import Register from './register.js'
+import Profile from './profile.js'
+import Feed from './feed.js'
 
-export default class Main extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: ''
+export const SignedIn = TabNavigator({
+  Feed: {
+    screen: Feed,
+    navigationOptions: {
+      tabBarLabel: "Feed",
+      tabBarIcon: ({ tintColor }) => (
+        <FontAwesome name="home" size={30} color={tintColor} />
+      )
     }
-  } // Note that there is no comma after the method completion
-
-  render() {
-    return (
-
-<KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-
-
-      <View style={styles.container}>
-
-        <Image
-          source={require('./my-icon.png')}
-          style={{resizeMode: 'contain',width:220}}
-        />
-
-      </View>
-</KeyboardAvoidingView>
-    );
+  },
+  Profile: {
+    screen: Profile,
+    navigationOptions: {
+      tabBarLabel: "Profile",
+      tabBarIcon: ({ tintColor }) => (
+        <FontAwesome name="user" size={30} color={tintColor} />
+      )
+    }
   }
-}
+});
 
 
 const styles = StyleSheet.create({

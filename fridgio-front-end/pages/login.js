@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput,Button, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView,AsyncStorage } from 'react-native';
 console.disableYellowBox = true;
 
-import Register from './register.js'
 import Main from './main.js'
+import Register from './register.js'
 
 const ACCESS_TOKEN = 'access_token';
 
@@ -27,7 +27,7 @@ export default class Login extends React.Component {
       <View style={styles.container}>
 
         <Image
-          source={require('./my-icon.png')}
+          source={require('../my-icon.png')}
           style={{resizeMode: 'contain',width:220}}
         />
 
@@ -49,15 +49,15 @@ export default class Login extends React.Component {
             placeholder="Digite sua Senha"
           />
 
+          <Text style={styles.error}>
+            {this.state.error}
+          </Text>
+
           <Button
             onPress={this.login.bind(this)}
             title="Login"
             color="#7920FF"
           />
-
-          <Text style={styles.error}>
-            {this.state.error}
-          </Text>
 
         </View>
 
@@ -81,7 +81,7 @@ export default class Login extends React.Component {
     this.username.clear();
     this.senha.clear();
 
-    fetch("http://192.168.15.10:3000/login", {
+    fetch("http://192.168.41.220:3000/login", {
        method: "POST",
        headers: {
          'Accept': 'application/json',
@@ -94,11 +94,10 @@ export default class Login extends React.Component {
 
       if (res.sucess == true){
         console.log(res.sucess);
-        AsyncStorage.setItem('user',res.username)
+        console.log(res.token);
         this.props.navigation.navigate('Main');
       }else{
-        console.log(res.sucess);
-        alert(res.message);
+        this.setState({error: res.message});
       }
     });
 

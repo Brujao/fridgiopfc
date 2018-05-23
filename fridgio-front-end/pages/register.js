@@ -2,9 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput,Button, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView} from 'react-native';
 console.disableYellowBox = true;
 
-import Register from './register.js'
+import Login from './login.js'
 
-export default class Login extends React.Component {
+export default class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +20,7 @@ export default class Login extends React.Component {
       <View style={styles.container}>
 
         <Image
-        source={require('./my-icon.png')}
+        source={require('../my-icon.png')}
         style={{resizeMode: 'contain',width:220}}
         />
 
@@ -55,7 +55,12 @@ export default class Login extends React.Component {
             title="Cadastrar"
             color="#7920FF"
           />
+
         </View>
+
+        <Text style={styles.link} onPress={() => this.props.navigation.navigate('Login')}>
+          Fazer Login
+        </Text>
 
       </View>
 </KeyboardAvoidingView>
@@ -77,7 +82,7 @@ export default class Login extends React.Component {
         "senha":this.state.senha,
     }
 
-      fetch("http://192.168.15.10:3000/usuarios/add", {
+      fetch("http://192.168.41.220:3000/usuarios/add", {
          method: "POST",
          headers: {
            'Accept': 'application/json',

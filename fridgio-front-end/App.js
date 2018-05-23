@@ -3,19 +3,20 @@ import { StyleSheet, Text, View, TextInput,Button, FlatList, ActivityIndicator, 
 import {StackNavigator} from 'react-navigation';
 console.disableYellowBox = true;
 
-import Login from '.pages/login.js';
-import Register from '.pages/register.js'
-import Main from '.pages/main.js'
+import {SignedOut} from './router/signedOut.js';
+// import Login from './pages/login.js';
+// import Register from './pages/register.js';
+// import Main from './pages/main.js';
 
-const Application = StackNavigator(
-  {
-    Home: {screen: Login},Register: {screen:Register},Main: {screen:Main}
-    },{
-      navigationOptions:{
-        header: false
-      }
-  }
-);
+// const Application = StackNavigator(
+//   {
+//     Home: {screen: Login},Register: {screen:Register},Main: {screen:Main}
+//     },{
+//       navigationOptions:{
+//         header: false
+//       }
+//   }
+// );
 
 export default class App extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export default class App extends React.Component {
   render() {
 
     return (
-      <Application/>
+      <SignedOut/>
 
     );
 
