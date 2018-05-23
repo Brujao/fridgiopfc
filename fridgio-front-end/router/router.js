@@ -1,32 +1,48 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput,Button, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
-import {StackNavigator, TabNavigator} from 'react-navigation';
 console.disableYellowBox = true;
 
-import Profile from './profile.js'
-import Feed from './feed.js'
+import { StackNavigator, TabNavigator, TabView } from "react-navigation";
+
+import Login from "../pages/login.js";
+import Register from "../pages/register.js";
+import Profile from '../pages/profile.js';
+import Feed from '../pages/feed.js';
+
+export const SignedOut = StackNavigator({
+  Login: {
+    screen: Login,
+  },
+  Register: {
+    screen: Register,
+  }
+},
+{
+  headerMode: 'none',
+  navigationOptions: {
+    headerVisible: false,
+  }
+ }
+);
 
 export const SignedIn = TabNavigator({
   Feed: {
     screen: Feed,
     navigationOptions: {
-      tabBarLabel: "Feed",
-      tabBarIcon: ({ tintColor }) => (
-        <FontAwesome name="home" size={30} color={tintColor} />
-      )
+      tabBarLabel: 'Feed',
     }
   },
   Profile: {
     screen: Profile,
     navigationOptions: {
-      tabBarLabel: "Profile",
-      tabBarIcon: ({ tintColor }) => (
-        <FontAwesome name="user" size={30} color={tintColor} />
-      )
+      tabBarLabel: 'Profile',
     }
   }
-});
-
+},
+{
+  tabBarPosition: 'bottom'
+}
+);
 
 const styles = StyleSheet.create({
   container: {

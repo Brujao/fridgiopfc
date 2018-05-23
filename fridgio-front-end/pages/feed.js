@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput,Button, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View, TextInput,Button, ScrollView, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView} from 'react-native';
 console.disableYellowBox = true;
 
 import Register from './register.js'
@@ -9,7 +9,7 @@ export default class Feed extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      receitas: [],
     }
   } // Note that there is no comma after the method completion
 
@@ -26,10 +26,54 @@ export default class Feed extends React.Component {
           style={{resizeMode: 'contain',width:220}}
         />
 
+          <ScrollView>
+            {this.listar()}
+          </ScrollView>
+
+        <Button
+          onPress={this.receitas.bind(this)}
+          title="Mostrar Receitas"
+          color="#7920FF"
+        />
+
+
       </View>
 </KeyboardAvoidingView>
     );
   }
+
+  receitas() {
+
+    fetch("http://192.168.15.10:3000/receitas", {
+       method: "GET",
+       headers: {
+         'Accept': 'application/json',
+         'Content-Type': 'application/json',
+       },
+       body:  ''
+    })
+    .then((response)=> response.json())
+    .then((res) =>{
+      this.setState({receitas: res});
+      console.log(res);
+    });
+  }
+
+  listar(){
+    return this.state.receitas.map((receita) => {
+      return (
+        <View>
+            <Text style={{fontWeight: "bold"}}>Título:</Text>
+            <Text>{receita.titulo}</Text>
+            <Text style={{fontWeight: "bold"}}>Ingredientes:</Text>
+            <Text>{receita.ingredientes}</Text>
+            <Text style={{fontWeight: "bold"}}>Como fazer:</Text>
+            <Text>{receita.modoPreparo}</Text>
+        </View>
+      )
+    });
+  }
+
 }
 
 

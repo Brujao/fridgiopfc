@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput,Button, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView,AsyncStorage } from 'react-native';
 console.disableYellowBox = true;
 
-import Main from './main.js'
 import Register from './register.js'
+import Feed from './feed.js'
 
 const ACCESS_TOKEN = 'access_token';
 
@@ -81,7 +81,7 @@ export default class Login extends React.Component {
     this.username.clear();
     this.senha.clear();
 
-    fetch("http://192.168.41.220:3000/login", {
+    fetch("http://192.168.15.10:3000/login", {
        method: "POST",
        headers: {
          'Accept': 'application/json',
@@ -95,8 +95,9 @@ export default class Login extends React.Component {
       if (res.sucess == true){
         console.log(res.sucess);
         console.log(res.token);
-        this.props.navigation.navigate('Main');
+        this.props.navigation.navigate('Feed');
       }else{
+        console.log(res.sucess);
         this.setState({error: res.message});
       }
     });

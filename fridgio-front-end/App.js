@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TextInput,Button, FlatList, ActivityIndicator, 
 import {StackNavigator} from 'react-navigation';
 console.disableYellowBox = true;
 
-import {SignedOut} from './router/signedOut.js';
+import {SignedOut,SignedIn} from './router/router.js';
 // import Login from './pages/login.js';
 // import Register from './pages/register.js';
 // import Main from './pages/main.js';
@@ -29,7 +29,7 @@ export default class App extends React.Component {
   render() {
 
     return (
-      <SignedOut/>
+      <SignedIn/>
 
     );
 
