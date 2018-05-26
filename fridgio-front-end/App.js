@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput,Button, FlatList, ActivityIndicator, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, TextInput,Button, FlatList, ActivityIndicator, TouchableOpacity, AsyncStorage} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 console.disableYellowBox = true;
 
 import {SignedOut,SignedIn} from './router/router.js';
+
 // import Login from './pages/login.js';
 // import Register from './pages/register.js';
 // import Main from './pages/main.js';
@@ -22,18 +23,33 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      data: [],
+      isLoaded: false,
+      hasToken: false
     }
+  }
+
+  componentDidMount() {
+    AsyncStorage.getItem('ACCESS_TOKEN').then((token) => {
+      this.setState({ hasToken: token !== null, isLoaded: true })
+    });
   }
 
   render() {
 
-    return (
-      <SignedIn/>
+      const { isLoaded, hasToken } = this.state;
 
-    );
+      // If we haven't checked AsyncStorage yet, don't render anything (better ways to do this)
+      if (!isLoaded) {
+        return null;
+      }
 
-  }
+      if (hasToken) {
+        return <SignedIn />;
+      } else {
+        return <SignedOut />;
+      }
+    }
 }
 
 const styles = StyleSheet.create({

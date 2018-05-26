@@ -5,7 +5,6 @@ console.disableYellowBox = true;
 import Register from './register.js'
 import Feed from './feed.js'
 
-const ACCESS_TOKEN = 'access_token';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -71,6 +70,35 @@ export default class Login extends React.Component {
   }
 
 
+  async getToken(){
+    try{
+      let token = await AsyncStorage.getItem(ACCESS_TOKEN);
+      console.log('token is:' + token);
+    }catch(e){
+      console.log('something went wrong in get token');
+    }
+  }
+
+  async removeToken(acessToken){
+    try{
+      await AsyncStorage.removeItem(ACCESS_TOKEN);
+      this.getToken();
+    }catch(e){
+      console.log('something went wrong in remove token');
+    }
+  }
+
+  async isSignedIn(){
+    try{
+      let key = await AsyncStorage.getItem(ACCESS_TOKEN);
+    }catch(e){
+      console.log('something went wrong in is signed in');
+    }
+
+  return (key !== null) ? true : false;
+};
+
+
   login() {
 
     var data = {
@@ -81,7 +109,7 @@ export default class Login extends React.Component {
     this.username.clear();
     this.senha.clear();
 
-    fetch("http://192.168.15.10:3000/login", {
+    fetch("http://192.168.0.101:3000/login", {
        method: "POST",
        headers: {
          'Accept': 'application/json',
@@ -93,11 +121,12 @@ export default class Login extends React.Component {
     .then((res) =>{
 
       if (res.sucess == true){
-        console.log(res.sucess);
-        console.log(res.token);
+        this.setState({error: res.message});
+        AsyncStorage.setItem('ACCESS_TOKEN', res.token);
         this.props.navigation.navigate('Feed');
       }else{
-        console.log(res.sucess);
+        //console.log(res.sucess);
+        //console.log(res.message);
         this.setState({error: res.message});
       }
     });
