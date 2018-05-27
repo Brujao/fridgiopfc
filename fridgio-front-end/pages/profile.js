@@ -1,9 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput,Button, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, AsyncStorage } from 'react-native';
+import {StackNavigator} from 'react-navigation';
 console.disableYellowBox = true;
 
 import Register from './register.js'
 import Login from './login.js'
+import {SignedOut,SignedIn,RootNavigator} from '../router/router.js'
 
 export default class Profile extends React.Component {
   constructor(props) {
@@ -31,9 +33,10 @@ export default class Profile extends React.Component {
           PROFILE
         </Text>
 
+
         <Button
-          onPress={this.signOut.bind(this)}
-          title="Login"
+          onPress={() => this.signOut()}
+          title="Logout"
           color="#7920FF"
         />
 
@@ -43,7 +46,8 @@ export default class Profile extends React.Component {
   }
 
   signOut(){
-    AsyncStorage.removeItem('ACCESS_TOKEN');
+   AsyncStorage.removeItem('ACCESS_TOKEN');
+   this.props.navigation.navigate('SignedOut');
   }
 }
 

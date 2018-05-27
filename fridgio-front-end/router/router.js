@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput,Button, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView } from 'react-native';
 console.disableYellowBox = true;
 
-import { StackNavigator, TabNavigator, TabView } from "react-navigation";
+import { StackNavigator, TabNavigator, TabView, SwitchNavigator } from "react-navigation";
 
 import Login from "../pages/login.js";
 import Register from "../pages/register.js";
@@ -43,6 +43,23 @@ export const SignedIn = TabNavigator({
   tabBarPosition: 'bottom'
 }
 );
+
+export const RootNavigator = (hasToken = false) => {
+  return SwitchNavigator(
+    {
+      SignedIn: {
+        screen: SignedIn
+      },
+      SignedOut: {
+        screen: SignedOut
+      }
+    },
+    {
+      initialRouteName: hasToken ? "SignedIn" : "SignedOut"
+    }
+  );
+};
+
 
 const styles = StyleSheet.create({
   container: {

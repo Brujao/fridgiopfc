@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TextInput,Button, FlatList, ActivityIndicator, 
 import {StackNavigator} from 'react-navigation';
 console.disableYellowBox = true;
 
-import {SignedOut,SignedIn} from './router/router.js';
+import {SignedOut,SignedIn,RootNavigator} from './router/router.js';
 
 // import Login from './pages/login.js';
 // import Register from './pages/register.js';
@@ -44,11 +44,8 @@ export default class App extends React.Component {
         return null;
       }
 
-      if (hasToken) {
-        return <SignedIn />;
-      } else {
-        return <SignedOut />;
-      }
+      const Layout = RootNavigator(hasToken);
+      return <Layout />;
     }
 }
 

@@ -70,35 +70,6 @@ export default class Login extends React.Component {
   }
 
 
-  async getToken(){
-    try{
-      let token = await AsyncStorage.getItem(ACCESS_TOKEN);
-      console.log('token is:' + token);
-    }catch(e){
-      console.log('something went wrong in get token');
-    }
-  }
-
-  async removeToken(acessToken){
-    try{
-      await AsyncStorage.removeItem(ACCESS_TOKEN);
-      this.getToken();
-    }catch(e){
-      console.log('something went wrong in remove token');
-    }
-  }
-
-  async isSignedIn(){
-    try{
-      let key = await AsyncStorage.getItem(ACCESS_TOKEN);
-    }catch(e){
-      console.log('something went wrong in is signed in');
-    }
-
-  return (key !== null) ? true : false;
-};
-
-
   login() {
 
     var data = {
@@ -123,7 +94,8 @@ export default class Login extends React.Component {
       if (res.sucess == true){
         this.setState({error: res.message});
         AsyncStorage.setItem('ACCESS_TOKEN', res.token);
-        this.props.navigation.navigate('Feed');
+        this.props.navigation.navigate('SignedIn');
+        console.log(res.token);
       }else{
         //console.log(res.sucess);
         //console.log(res.message);
