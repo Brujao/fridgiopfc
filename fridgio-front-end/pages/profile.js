@@ -30,7 +30,7 @@ export default class Profile extends React.Component {
         />
 
         <Text>
-          PROFILE
+          PERFIL
         </Text>
 
 
@@ -47,6 +47,7 @@ export default class Profile extends React.Component {
 
   signOut(){
    AsyncStorage.removeItem('ACCESS_TOKEN');
+   AsyncStorage.removeItem('USERNAME');
    this.props.navigation.navigate('SignedOut');
   }
 }
