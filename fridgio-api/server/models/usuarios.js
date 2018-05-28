@@ -6,6 +6,7 @@ var usuarioSchema = mongoose.Schema({
 		required: true,
 		minlength: 1,
 		trim: true,
+		lowercase: true,
 		index:{
 			unique: true,
 			dropUps: true

@@ -90,7 +90,7 @@ app.post('/aprovacao', (req, res) => {
 Receita.findByIdAndUpdate(req.body.id,{
 	$set: {
 		titulo:req.body.titulo,
-		ingredientes:req.body.ingrediente,
+		ingredientes:req.body.ingredientes.split(';'),
 		modoPreparo:req.body.modoPreparo,
 		status:req.body.status
 	}
@@ -105,26 +105,26 @@ app.get('/receitas/add',(req, res)=>{
 		res.sendFile(path.join(__dirname, '../views', 'add.html'));
 });
 
-app.get('/receitas',verifyToken, (req,res)=>{
-	jwt.verify(req.token,'secretkey',(err, authData)=>{
-		if(err){
-			res.sendStatus(403);
-		}else{
+app.get('/receitas', (req,res)=>{
+	// jwt.verify(req.token,'secretkey',(err, authData)=>{
+	// 	if(err){
+	// 		res.sendStatus(403);
+	// 	}else{
 			Receita.find({status: 1}).then((receitas)=>{
 				res.send(receitas);
 				//res.render(path.join(__dirname, '../views', 'lista-receitas.ejs'), {receitas: receitas});
 			},(e)=>{
 				res.status(400).send(e);
 			});
-		}
-	})
-});
+		});
+// 	})
+// });
 
 
 app.post('/receitas/add', (req, res) => {
 	var receita = new Receita();
 	receita.titulo = req.body.titulo;
-	receita.ingredientes = req.body.ingrediente;
+	receita.ingredientes = req.body.ingredientes;
 	receita.modoPreparo = req.body.modoPreparo;
 	receita.status = req.body.status;
 
