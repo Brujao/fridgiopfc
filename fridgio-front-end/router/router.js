@@ -8,6 +8,8 @@ import Login from "../pages/login.js";
 import Register from "../pages/register.js";
 import Profile from '../pages/profile.js';
 import Feed from '../pages/feed.js';
+import AddRecipe from '../pages/addRecipe.js'
+
 
 export const SignedOut = StackNavigator({
   Login: {
@@ -25,6 +27,22 @@ export const SignedOut = StackNavigator({
  }
 );
 
+export const ProfileScreen = StackNavigator({
+  Profile: {
+    screen: Profile,
+  },
+  AddRecipe: {
+    screen: AddRecipe,
+  }
+},
+{
+  headerMode: 'none',
+  navigationOptions: {
+    headerVisible: false,
+  }
+ }
+);
+
 export const SignedIn = TabNavigator({
   Feed: {
     screen: Feed,
@@ -32,8 +50,8 @@ export const SignedIn = TabNavigator({
       tabBarLabel: 'Feed',
     }
   },
-  Profile: {
-    screen: Profile,
+  UserProfile: {
+    screen: ProfileScreen,
     navigationOptions: {
       tabBarLabel: 'Profile',
     }

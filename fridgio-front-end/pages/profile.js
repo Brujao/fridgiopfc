@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput,Button, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, AsyncStorage } from 'react-native';
-import {StackNavigator} from 'react-navigation';
+import {StackNavigator,TabNavigator} from 'react-navigation';
 console.disableYellowBox = true;
 
 import Register from './register.js'
 import Login from './login.js'
+import AddRecipe from './addRecipe.js'
 import {SignedOut,SignedIn,RootNavigator} from '../router/router.js'
 
 export default class Profile extends React.Component {
@@ -33,8 +34,16 @@ export default class Profile extends React.Component {
           PERFIL
         </Text>
 
+        <Button
+          style={styles.button}
+          onPress={()=> this.addRecipe()}
+          title="Publicar receita"
+          color="#7920FF"
+        />
+
 
         <Button
+        style={styles.button}
           onPress={() => this.signOut()}
           title="Logout"
           color="#7920FF"
@@ -50,6 +59,10 @@ export default class Profile extends React.Component {
    AsyncStorage.removeItem('USERNAME');
    this.props.navigation.navigate('SignedOut');
   }
+
+  addRecipe(){
+    this.props.navigation.navigate('AddRecipe');
+  }
 }
 
 
@@ -61,10 +74,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  input:{
-    height: 40,
-    width: 300,
-    color:'#7920FF',
+  button:{
+    color:'#ffffff',
     marginBottom:20
   },
   link:{
