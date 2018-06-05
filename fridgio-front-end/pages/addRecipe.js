@@ -89,7 +89,7 @@ export default class AddRecipe extends React.Component {
         "status": 0
     }
 
-      fetch("http://192.168.15.2:3000/receitas/add", {
+      fetch("http://192.168.88.186:3000/receitas/add", {
          method: "POST",
          headers: {
            'Accept': 'application/json',

@@ -43,7 +43,7 @@ export default class Profile extends React.Component {
 
 
         <Button
-        style={styles.button}
+          style={styles.button}
           onPress={() => this.signOut()}
           title="Logout"
           color="#7920FF"
