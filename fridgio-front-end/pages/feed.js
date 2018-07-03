@@ -44,7 +44,7 @@ export default class Feed extends React.Component {
 
   receitas() {
 
-    fetch("http://192.168.88.186:3000/receitas", {
+    fetch("http://192.168.100.22:3000/receitas", {
        method: "GET",
        headers: {
          'Accept': 'application/json',

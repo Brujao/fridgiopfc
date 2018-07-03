@@ -82,7 +82,7 @@ export default class Register extends React.Component {
         "senha":this.state.senha,
     }
 
-      fetch("http://192.168.88.186:3000/usuarios/add", {
+      fetch("http://192.168.100.22:3000/usuarios/add", {
          method: "POST",
          headers: {
            'Accept': 'application/json',

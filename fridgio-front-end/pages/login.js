@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput,Button, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView,AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, TextInput,Button, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView,AsyncStorage, Platform } from 'react-native';
 console.disableYellowBox = true;
 
 import Register from './register.js'
@@ -20,10 +20,13 @@ export default class Login extends React.Component {
   render() {
     return (
 
-<KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+<KeyboardAvoidingView style={styles.container} behavior="padding" enabled keyboardVerticalOffset={
+  Platform.select({
+     ios: () => 0,
+     android: () => 0
+  })()
+}>
 
-
-      <View style={styles.container}>
 
         <Image
           source={require('../my-icon.png')}
@@ -64,7 +67,6 @@ export default class Login extends React.Component {
           Criar conta
         </Text>
 
-      </View>
 </KeyboardAvoidingView>
     );
   }
@@ -80,7 +82,7 @@ export default class Login extends React.Component {
     this.username.clear();
     this.senha.clear();
 
-    fetch("http://192.168.88.186:3000/login", {
+    fetch("http://192.168.100.22:3000/login", {
        method: "POST",
        headers: {
          'Accept': 'application/json',
@@ -110,7 +112,6 @@ export default class Login extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 30,
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
