@@ -74,7 +74,7 @@ app.post('/api/usuarios/add', (req,res)=>{
 	usuario.senha = req.body.senha;
 
 	usuario.save().then(()=>{
-		res.redirect('/usuarios')
+		res.redirect('/api/usuarios')
 	}),(e)=>{
 		res.status(400).send(e);
 	}
