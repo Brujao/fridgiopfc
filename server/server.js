@@ -21,7 +21,7 @@ app.get('/api', (req,res)=>{
 	res.sendFile(path.join(__dirname, '../views', 'api.html'));
 });
 
-app.post('/login',(req,res)=>{
+app.post('/api/login',(req,res)=>{
 	Usuario.find({username: req.body.username, senha: req.body.senha}).then((usuario)=>{
 
 		if (usuario.length !== 0){
@@ -54,7 +54,7 @@ function verifyToken(req,res,next){
 }
 
 
-app.get('/usuarios',(req,res)=>{
+app.get('/api/usuarios',(req,res)=>{
 	Usuario.find().then((usuarios)=>{
 		res.render(path.join(__dirname, '../views', 'lista-usuarios.ejs'), {usuarios: usuarios});
 	},(e)=>{
@@ -62,11 +62,11 @@ app.get('/usuarios',(req,res)=>{
 	});
 });
 
-app.get('/usuarios/add', (req,res)=>{
+app.get('/api/usuarios/add', (req,res)=>{
 	res.sendFile(path.join(__dirname, '../views', 'usuario.html'));
 });
 
-app.post('/usuarios/add', (req,res)=>{
+app.post('/api/usuarios/add', (req,res)=>{
 	console.log(req.body);
 	var usuario = new Usuario();
 	usuario.username = req.body.username;
@@ -80,7 +80,7 @@ app.post('/usuarios/add', (req,res)=>{
 	}
 });
 
-app.get('/aprovacao',(req,res)=>{
+app.get('/api/aprovacao',(req,res)=>{
 	Receita.find({status: 0}).then((receitas)=>{
 		res.render(path.join(__dirname, '../views', 'aprovar-receitas.ejs'), {receitas: receitas});
 	},(e)=>{
@@ -88,7 +88,7 @@ app.get('/aprovacao',(req,res)=>{
 	});
 });
 
-app.post('/aprovacao', (req, res) => {
+app.post('/api/aprovacao', (req, res) => {
 	var receita = new Receita();
 
 Receita.findByIdAndUpdate(req.body.id,{
@@ -99,17 +99,17 @@ Receita.findByIdAndUpdate(req.body.id,{
 		status:req.body.status
 	}
 }).then(()=>{
-		 res.redirect('/aprovacao');
+		 res.redirect('/api/aprovacao');
 	},(e)=>{
 		res.status(400).send(e);
 	});
 });
 
-app.get('/receitas/add',(req, res)=>{
+app.get('/api/receitas/add',(req, res)=>{
 		res.sendFile(path.join(__dirname, '../views', 'add.html'));
 });
 
-app.get('/receitas', (req,res)=>{
+app.get('/api/receitas', (req,res)=>{
 	// jwt.verify(req.token,'secretkey',(err, authData)=>{
 	// 	if(err){
 	// 		res.sendStatus(403);
@@ -125,7 +125,7 @@ app.get('/receitas', (req,res)=>{
 // });
 
 
-app.post('/receitas/add', (req, res) => {
+app.post('/api/receitas/add', (req, res) => {
 	var receita = new Receita();
 	receita.titulo = req.body.titulo;
 	receita.ingredientes = req.body.ingredientes;
