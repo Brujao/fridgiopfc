@@ -7,7 +7,7 @@
 <body>
   <!-- <ul class="receitas"> -->
   <% for(var i=0; i<receitas.length; i++) {%>
-    <form action="/aprovacao" method="POST">
+    <form action="/api/aprovacao" method="POST">
       <input type="hidden" name="id" value="<%= receitas[i]._id %>">
       Nome:<br>
       <input type="text" placeholder="Nome" name="titulo" value="<%= receitas[i].titulo %>"><br>

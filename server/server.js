@@ -133,7 +133,7 @@ app.post('/api/receitas/add', (req, res) => {
 	receita.status = req.body.status;
 
 	receita.save().then(()=>{
-		 res.redirect('/receitas');
+		 res.redirect('/api/receitas');
 	},(e)=>{
 		res.status(400).send(e);
 	});
