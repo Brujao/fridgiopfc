@@ -17,6 +17,10 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.get('/api', (req,res)=>{
+	res.sendFile(path.join(__dirname, '../views', 'api.html'));
+});
+
 app.post('/login',(req,res)=>{
 	Usuario.find({username: req.body.username, senha: req.body.senha}).then((usuario)=>{
 
