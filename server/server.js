@@ -17,6 +17,10 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.get('/', (req,res)=>{
+	res.redirect('/api');
+});
+
 app.get('/api', (req,res)=>{
 	res.sendFile(path.join(__dirname, '../views', 'api.html'));
 });
