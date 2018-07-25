@@ -1,7 +1,17 @@
+body{
+  background-color: lightgray;
+}
 .container{
-width: 400px;
-margin-left: auto;
-margin-right: auto;
-text-align: center;
-background-color: lightblue;
+  height: 40vh;
+  width: 400px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: gray;
+}
+
+a{
+  text-decoration: none;
 }
