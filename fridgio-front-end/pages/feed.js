@@ -44,13 +44,12 @@ export default class Feed extends React.Component {
 
   receitas() {
 
-    fetch("http://192.168.100.22:3000/receitas", {
+    fetch("https://cursed.studio/api/receitas", {
        method: "GET",
        headers: {
          'Accept': 'application/json',
          'Content-Type': 'application/json',
-       },
-       body:  ''
+       }
     })
     .then((response)=> response.json())
     .then((res) =>{

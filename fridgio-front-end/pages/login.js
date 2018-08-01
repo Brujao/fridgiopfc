@@ -20,13 +20,14 @@ export default class Login extends React.Component {
   render() {
     return (
 
-<KeyboardAvoidingView style={styles.container} behavior="padding" enabled keyboardVerticalOffset={
-  Platform.select({
-     ios: () => 0,
-     android: () => 0
-  })()
-}>
+// <KeyboardAvoidingView style={styles.container} behavior="padding" enabled keyboardVerticalOffset={
+//   Platform.select({
+//      ios: () => 0,
+//      android: () => 0
+//   })()
+// }>
 
+    <View style={styles.container}>
 
         <Image
           source={require('../my-icon.png')}
@@ -66,8 +67,7 @@ export default class Login extends React.Component {
         <Text style={styles.link} onPress={() => this.props.navigation.navigate('Register')}>
           Criar conta
         </Text>
-
-</KeyboardAvoidingView>
+      </View>
     );
   }
 
@@ -82,7 +82,7 @@ export default class Login extends React.Component {
     this.username.clear();
     this.senha.clear();
 
-    fetch("http://192.168.100.22:3000/login", {
+    fetch("https://cursed.studio/api/login", {
        method: "POST",
        headers: {
          'Accept': 'application/json',

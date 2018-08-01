@@ -15,7 +15,6 @@ export default class Register extends React.Component {
   render() {
     return (
 
-<KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
 
       <View style={styles.container}>
 
@@ -63,7 +62,6 @@ export default class Register extends React.Component {
         </Text>
 
       </View>
-</KeyboardAvoidingView>
 
     );
   }
@@ -82,7 +80,7 @@ export default class Register extends React.Component {
         "senha":this.state.senha,
     }
 
-      fetch("http://192.168.100.22:3000/usuarios/add", {
+      fetch("https://cursed.studio/api/usuarios/add", {
          method: "POST",
          headers: {
            'Accept': 'application/json',

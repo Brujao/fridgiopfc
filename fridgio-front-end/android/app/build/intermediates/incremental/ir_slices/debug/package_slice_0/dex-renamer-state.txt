@@ -1,0 +1,4 @@
+#Tue Jul 31 12:40:46 BRT 2018
+base.0=C\:\\Users\\dolago2k\\Documents\\fridgio\\fridgio-front-end\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
