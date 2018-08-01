@@ -4,7 +4,7 @@ var ingredientesSchema = mongoose.Schema({
 	name:{
 		type: String,
 		required: true,
-		minlength: 1,
+		minlength: 2,
 		trim: true,
 		lowercase: true,
 		index:{
