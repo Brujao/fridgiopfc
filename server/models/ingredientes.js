@@ -19,7 +19,10 @@ var ingredientesSchema = mongoose.Schema({
 		minlength: 1
 	},
 	children:{
-		type: [String],
+		type: {
+			name: String,
+			id: Number
+		},
 		required: true,
 		minlength: 1
 	}
