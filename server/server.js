@@ -111,6 +111,7 @@ Receita.findByIdAndUpdate(req.body.id,{
 	});
 });
 
+
 app.get('/api/ingredientes', (req,res)=>{
 	Ingredientes.find().then((ingredientes)=>{
 		res.send(ingredientes);
