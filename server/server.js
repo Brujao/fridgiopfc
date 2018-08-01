@@ -7,6 +7,7 @@ var {ObjectID} = require('mongodb');
 var {mongoose} = require('./db/mongoose.js');
 var Receita = require('./models/receitas.js');
 var Usuario = require('./models/usuarios.js');
+var Ingredientes = require('./models/ingredientes.js')
 
 var app = express();
 const port = process.env.PORT || 3000;
@@ -104,6 +105,14 @@ Receita.findByIdAndUpdate(req.body.id,{
 	}
 }).then(()=>{
 		 res.redirect('/api/aprovacao');
+	},(e)=>{
+		res.status(400).send(e);
+	});
+});
+
+app.get('/api/ingredientes', (req,res)=>{
+	Ingredientes.find().then((ingredientes)=>{
+		res.send(ingredientes);
 	},(e)=>{
 		res.status(400).send(e);
 	});
