@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput,Button, ScrollView, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView} from 'react-native';
 console.disableYellowBox = true;
+import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 
 import Register from './register.js'
 
@@ -10,36 +11,56 @@ export default class Feed extends React.Component {
     this.state = {
       username: '',
       receitas: [],
+      selectedItems: [],
+      items: [],
     }
-  } // Note that there is no comma after the method completion
+  }
+
+  onSelectedItemsChange = (selectedItems) => {
+    this.setState({ selectedItems });
+  }
+
+  componentWillMount(){
+
+      fetch("https://cursed.studio/api/ingredientes", {
+         method: "GET",
+         headers: {
+           'Accept': 'application/json',
+           'Content-Type': 'application/json',
+         }
+      })
+      .then((response)=> response.json())
+      .then((res) =>{
+        this.setState({items: res});
+        console.log(res);
+      });
+    }
 
   render() {
     return (
 
-<KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+      <View>
 
-
-      <View style={styles.container}>
-
-        <Image
-          source={require('../my-icon.png')}
-          style={{resizeMode: 'contain',width:220}}
+        <SectionedMultiSelect
+          items={this.state.items}
+          uniqueKey='name'
+          subKey='children'
+          selectText='Escolha os ingredientes'
+          showDropDowns={true}
+          readOnlyHeadings={true}
+          onSelectedItemsChange={this.onSelectedItemsChange}
+          selectedItems={this.state.selectedItems}
+          // onConfirm={this.query.bind(this)}
         />
 
-          <ScrollView>
-            {this.listar()}
-          </ScrollView>
+        <Text>
+        {this.state.selectedItems.join('/,/')}
+        </Text>
 
-        <Button
-          onPress={this.receitas.bind(this)}
-          title="Mostrar Receitas"
-          color="#7920FF"
-        />
 
 
 
       </View>
-</KeyboardAvoidingView>
     );
   }
 
@@ -59,21 +80,45 @@ export default class Feed extends React.Component {
     });
   }
 
-  listar(){
-    return this.state.receitas.map((receita) => {
-      return (
-        <View>
-            <Text style={{fontWeight: "bold"}}>Título:</Text>
-            <Text>{receita.titulo}</Text>
-            <Text style={{fontWeight: "bold"}}>Ingredientes:</Text>
-            <Text>{receita.ingredientes}</Text>
-            <Text style={{fontWeight: "bold"}}>Como fazer:</Text>
-            <Text>{receita.modoPreparo}</Text>
-        </View>
-      )
-    });
+  query(){
+
+    var data = '/'+this.state.selectedItems.join('/,/')+'/';
+
+
+
+
+        fetch("https://cursed.studio/api/receitas", {
+           method: "POST",
+           headers: {
+             'Accept': 'application/json',
+             'Content-Type': 'application/json',
+           },
+           body:  JSON.stringify(data)
+        })
+        .then((response)=>{
+           return response.json();
+        })
+        .then((res)=>{
+          console.log(res);
+        });
+
   }
 
+
+  // listar(){
+  //   return this.state.receitas.map((receita) => {
+  //     return (
+  //       <View>
+  //           <Text style={{fontWeight: "bold"}}>Título:</Text>
+  //           <Text>{receita.titulo}</Text>
+  //           <Text style={{fontWeight: "bold"}}>Ingredientes:</Text>
+  //           <Text>{receita.ingredientes}</Text>
+  //           <Text style={{fontWeight: "bold"}}>Como fazer:</Text>
+  //           <Text>{receita.modoPreparo}</Text>
+  //       </View>
+  //     )
+  //   });
+  // }
 }
 
 

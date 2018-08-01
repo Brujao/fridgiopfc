@@ -9,7 +9,7 @@ import Register from "../pages/register.js";
 import Profile from '../pages/profile.js';
 import Feed from '../pages/feed.js';
 import AddRecipe from '../pages/addRecipe.js'
-import Buscar from '../pages/search.js'
+// import Buscar from '../pages/search.js'
 
 
 export const SignedOut = StackNavigator({
@@ -45,12 +45,12 @@ export const ProfileScreen = StackNavigator({
 );
 
 export const SignedIn = TabNavigator({
-  Buscar: {
-    screen: Buscar,
-    navigationOptions: {
-      tabBarLabel: 'Buscar',
-    }
-  },
+  // Buscar: {
+  //   screen: Buscar,
+  //   navigationOptions: {
+  //     tabBarLabel: 'Buscar',
+  //   }
+  // },
   Feed: {
     screen: Feed,
     navigationOptions: {

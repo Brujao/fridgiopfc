@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View
+  View, Text
 } from 'react-native';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 
@@ -41,18 +41,25 @@ export default class Buscar extends Component {
 
         <SectionedMultiSelect
           items={this.state.items}
-          uniqueKey='id'
+          uniqueKey='name'
           subKey='children'
           selectText='Escolha os ingredientes'
           showDropDowns={true}
           readOnlyHeadings={true}
           onSelectedItemsChange={this.onSelectedItemsChange}
           selectedItems={this.state.selectedItems}
+          // onConfirm={this.query.bind(this)}
         />
+
+        <Text>
+        {this.state.selectedItems.join('/,/')}
+        </Text>
 
       </View>
     );
   }
+
+
 
 
 }
