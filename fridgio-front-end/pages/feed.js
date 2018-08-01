@@ -37,6 +37,7 @@ export default class Feed extends React.Component {
         />
 
 
+
       </View>
 </KeyboardAvoidingView>
     );
