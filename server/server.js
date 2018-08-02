@@ -125,13 +125,12 @@ app.get('/api/receitas/add',(req, res)=>{
 });
 
 
-app.get('/api/query', (req,res)=>{
+app.post('/api/query', (req,res)=>{
 	// jwt.verify(req.token,'secretkey',(err, authData)=>{
 	// 	if(err){
 	// 		res.sendStatus(403);
 	// 	}else{
-			var items = req.body.query;
-			Receita.find({status: 1, ingredientes:{ $not: { $elemMatch: { $nin: [items] } } }}).then((receitas)=>{
+			Receita.find({status: 1, ingredientes:{ $not: { $elemMatch: { $nin: [req.body.query] } } }}).then((receitas)=>{
 				res.send(receitas);
 				//res.render(path.join(__dirname, '../views', 'lista-receitas.ejs'), {receitas: receitas});
 			},(e)=>{
