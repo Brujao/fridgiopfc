@@ -124,12 +124,28 @@ app.get('/api/receitas/add',(req, res)=>{
 		res.sendFile(path.join(__dirname, '../views', 'add.html'));
 });
 
-app.get('/api/receitas', (req,res)=>{
+
+app.get('/api/query', (req,res)=>{
 	// jwt.verify(req.token,'secretkey',(err, authData)=>{
 	// 	if(err){
 	// 		res.sendStatus(403);
 	// 	}else{
 			Receita.find({status: 1, ingredientes:{ $not: { $elemMatch: { $nin: [req.body.query] } } }}).then((receitas)=>{  
+				res.send(receitas);
+				//res.render(path.join(__dirname, '../views', 'lista-receitas.ejs'), {receitas: receitas});
+			},(e)=>{
+				res.status(400).send(e);
+			});
+		});
+// 	})
+// });
+
+app.get('/api/receitas', (req,res)=>{
+	// jwt.verify(req.token,'secretkey',(err, authData)=>{
+	// 	if(err){
+	// 		res.sendStatus(403);
+	// 	}else{
+			Receita.find({status: 1}).then((receitas)=>{
 				res.send(receitas);
 				//res.render(path.join(__dirname, '../views', 'lista-receitas.ejs'), {receitas: receitas});
 			},(e)=>{
