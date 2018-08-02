@@ -129,7 +129,7 @@ app.get('/api/receitas', (req,res)=>{
 	// 	if(err){
 	// 		res.sendStatus(403);
 	// 	}else{
-			Receita.find({status: 1}).then((receitas)=>{
+			Receita.find({status: 1, ingredientes:{ $not: { $elemMatch: { $nin: [req.body.data] } } }}).then((receitas)=>{  
 				res.send(receitas);
 				//res.render(path.join(__dirname, '../views', 'lista-receitas.ejs'), {receitas: receitas});
 			},(e)=>{
