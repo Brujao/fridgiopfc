@@ -65,7 +65,17 @@ export const SignedIn = TabNavigator({
   }
 },
 {
-  tabBarPosition: 'bottom'
+  tabBarPosition: 'bottom',
+  tabBarOptions:{
+    indicatorStyle:{
+          backgroundColor: '#b906ce',
+    },
+    activeTintColor: '#b906ce',
+    inactiveTintColor: '#cb6fd6',
+    style:{
+      backgroundColor: "#fff",
+    }
+  }
 }
 );
 

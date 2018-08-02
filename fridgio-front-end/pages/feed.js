@@ -43,6 +43,7 @@ export default class Feed extends React.Component {
 
         <SectionedMultiSelect
           items={this.state.items}
+          colors={{primary: '#b906ce'}}
           uniqueKey='name'
           subKey='children'
           selectText='Escolha os ingredientes'
@@ -50,11 +51,14 @@ export default class Feed extends React.Component {
           readOnlyHeadings={true}
           onSelectedItemsChange={this.onSelectedItemsChange}
           selectedItems={this.state.selectedItems}
-          // onConfirm={this.query.bind(this)}
+          onConfirm={this.query.bind(this)}
+          hideSelect={false}
+          searchPlaceholderText='Pesquise os ingredientes'
+          confirmText= "Filtrar"
         />
 
         <Text>
-        {this.state.selectedItems.join('/,/')}
+        {this.listar()}
         </Text>
 
 
@@ -64,21 +68,21 @@ export default class Feed extends React.Component {
     );
   }
 
-  receitas() {
-
-    fetch("https://cursed.studio/api/receitas", {
-       method: "GET",
-       headers: {
-         'Accept': 'application/json',
-         'Content-Type': 'application/json',
-       }
-    })
-    .then((response)=> response.json())
-    .then((res) =>{
-      this.setState({receitas: res});
-      console.log(res);
-    });
-  }
+  // receitas() {
+  //
+  //   fetch("https://cursed.studio/api/receitas", {
+  //      method: "GET",
+  //      headers: {
+  //        'Accept': 'application/json',
+  //        'Content-Type': 'application/json',
+  //      }
+  //   })
+  //   .then((response)=> response.json())
+  //   .then((res) =>{
+  //     this.setState({receitas: res});
+  //     console.log(res);
+  //   });
+  // }
 
   query(){
 
@@ -99,26 +103,27 @@ export default class Feed extends React.Component {
            return response.json();
         })
         .then((res)=>{
+          this.setState({receitas: res});
           console.log(res);
         });
 
   }
 
 
-  // listar(){
-  //   return this.state.receitas.map((receita) => {
-  //     return (
-  //       <View>
-  //           <Text style={{fontWeight: "bold"}}>Título:</Text>
-  //           <Text>{receita.titulo}</Text>
-  //           <Text style={{fontWeight: "bold"}}>Ingredientes:</Text>
-  //           <Text>{receita.ingredientes}</Text>
-  //           <Text style={{fontWeight: "bold"}}>Como fazer:</Text>
-  //           <Text>{receita.modoPreparo}</Text>
-  //       </View>
-  //     )
-  //   });
-  // }
+  listar(){
+    return this.state.receitas.map((receita) => {
+      return (
+        <View>
+            <Text style={{fontWeight: "bold"}}>Título:</Text>
+            <Text>{receita.titulo}</Text>
+            <Text style={{fontWeight: "bold"}}>Ingredientes:</Text>
+            <Text>{receita.ingredientes}</Text>
+            <Text style={{fontWeight: "bold"}}>Como fazer:</Text>
+            <Text>{receita.modoPreparo}</Text>
+        </View>
+      )
+    });
+  }
 }
 
 
