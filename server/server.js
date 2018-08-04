@@ -130,7 +130,8 @@ app.post('/api/query', (req,res)=>{
 	// 	if(err){
 	// 		res.sendStatus(403);
 	// 	}else{
-			Receita.find({status: 1, ingredientes:{ $not: { $elemMatch: { $nin: [req.body.query] } } }}).then((receitas)=>{
+	var query = req.body.query;
+			Receita.find({status: 1, ingredientes:{ $not: { $elemMatch: { $nin: [query] } } }}).then((receitas)=>{
 				res.send(receitas);
 				//res.render(path.join(__dirname, '../views', 'lista-receitas.ejs'), {receitas: receitas});
 			},(e)=>{
