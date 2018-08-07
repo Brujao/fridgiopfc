@@ -131,7 +131,8 @@ app.post('/api/query', (req,res)=>{
 	// 		res.sendStatus(403);
 	// 	}else{
 			var query = req.body.query;
-			Receita.find({status: 1, ingredientes:{ $not: { $elemMatch: { $nin: new RegExp('^'+query+'$', "i") } } }}).then((receitas)=>{
+			var re = new RegExp(query.join("/,/"), "i");
+			Receita.find({status: 1, ingredientes:{ $not: { $elemMatch: { $nin: re } } }}).then((receitas)=>{
 				res.send(receitas);
 				//res.render(path.join(__dirname, '../views', 'lista-receitas.ejs'), {receitas: receitas});
 			},(e)=>{
