@@ -132,7 +132,7 @@ app.post('/api/query', (req,res)=>{
 	// 	}else{
 			var query = req.body.query;
 			var re = new RegExp(query.join("/,/"), "i");
-			Receita.find({status: 1, ingredientes:{ $not: { $elemMatch: { $nin: re } } }}).then((receitas)=>{
+			Receita.find({status: 1, ingredientes:{ $not: { $elemMatch: { $nin: [re] } } }}).then((receitas)=>{
 				res.send(receitas);
 				//res.render(path.join(__dirname, '../views', 'lista-receitas.ejs'), {receitas: receitas});
 			},(e)=>{
