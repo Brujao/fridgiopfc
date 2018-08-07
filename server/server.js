@@ -131,7 +131,7 @@ app.post('/api/query', (req,res)=>{
 	// 		res.sendStatus(403);
 	// 	}else{
 	var query = req.body.query;
-	query = query.replace(/\"/g,"\/");
+	query = query.replace(/"/g,"/");
 			Receita.find({status: 1, ingredientes:{ $not: { $elemMatch: { $nin: query } } }}).then((receitas)=>{
 				res.send(receitas);
 				//res.render(path.join(__dirname, '../views', 'lista-receitas.ejs'), {receitas: receitas});
