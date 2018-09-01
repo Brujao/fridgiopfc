@@ -24,6 +24,12 @@ var receitaSchema = mongoose.Schema({
       minlength: 1,
       maxlength: 1,
       trim: true
+    },
+    autor:{
+      type: String,
+      required: true,
+      minlength: 1,
+      trim:true
     }
 });
 

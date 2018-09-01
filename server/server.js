@@ -41,6 +41,20 @@ app.post('/api/login',(req,res)=>{
 		res.status(400).send(e);
 	});
 });
+// app.post('/api/loginAdmin',(req,res)=>{
+// 	Usuario.find({username: req.body.username, senha: req.body.senha, status: 1}).then((usuario)=>{
+//
+// 		if (usuario.length !== 0){
+// 			jwt.sign({user: usuario}, 'secretkey',(err,token)=>{
+// 				res.send({username: req.body.username, sucess: true, token: token, message: 'Login efeituado com sucesso'});
+// 			});
+// 		}else{
+// 			res.send({sucess: false, message:"Usuário e/ou senha incorretos!"});
+// 		}
+// 	},(e)=>{
+// 		res.status(400).send(e);
+// 	});
+// });
 
 function verifyToken(req,res,next){
 	//Get auth header value
