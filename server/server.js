@@ -78,6 +78,7 @@ app.post('/api/usuarios/add', (req,res)=>{
 	usuario.username = req.body.username;
 	usuario.email = req.body.email;
 	usuario.senha = req.body.senha;
+	usuario.status = req.body.status;
 
 	usuario.save().then(()=>{
 		res.redirect('/api/usuarios')
@@ -131,7 +132,8 @@ app.post('/api/query', (req,res)=>{
 	// 		res.sendStatus(403);
 	// 	}else{
 			var query = req.body.query;
-			Receita.find({status: 1, ingredientes:{ $not: { $elemMatch: { $nin: query } } }}).then((receitas)=>{
+			var regex = query.map(function (e) { return new RegExp(e); });
+			Receita.find({status: 1, ingredientes:{ $not: { $elemMatch: { $nin: regex } } }}).then((receitas)=>{
 				res.send(receitas);
 				//res.render(path.join(__dirname, '../views', 'lista-receitas.ejs'), {receitas: receitas});
 			},(e)=>{

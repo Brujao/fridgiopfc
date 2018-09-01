@@ -22,6 +22,13 @@ var usuarioSchema = mongoose.Schema({
 		type: String,
 		required: true,
 		minlength: 1
+	},
+	status:{
+		type:Number,
+		required: true,
+		minlength: 1,
+		maxlength: 1,
+		trim: true
 	}
 });
 
