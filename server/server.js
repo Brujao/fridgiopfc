@@ -116,7 +116,7 @@ app.get('/api/ingredientes', (req,res)=>{
 	Ingredientes.find().then((ingredientes)=>{
 		res.send(ingredientes);
 	},(e)=>{
-		res.status(403).send(e);
+		res.status(400).send(e);
 	});
 });
 
