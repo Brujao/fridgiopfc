@@ -101,6 +101,21 @@ app.post('/api/usuarios/add', (req,res)=>{
 	}
 });
 
+app.post('/api/usuarios/edit', (req, res) => {
+	var usuario = new Usuario();
+
+Usuario.findOneAndUpdate({email:req.body.email},{
+	$set: {
+		username:req.body.username,
+		email: req.body.email
+	}
+}).then(()=>{
+		 res.redirect('/api/usuarios');
+	},(e)=>{
+		res.status(400).send(e);
+	});
+});
+
 app.get('/api/aprovacao',(req,res)=>{
 	Receita.find({status: 0}).then((receitas)=>{
 		res.render(path.join(__dirname, '../views', 'aprovar-receitas.ejs'), {receitas: receitas});
