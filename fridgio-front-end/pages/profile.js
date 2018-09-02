@@ -17,11 +17,16 @@ export default class Profile extends React.Component {
     }
   } // Note that there is no comma after the method completion
 
+  componentWillMount(){
+    AsyncStorage.getItem('username', (e,value) => {
+        if (!e) {
+          this.setState({username:value});
+        }
+    });
+  }
+
   render() {
     return (
-
-<KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-
 
       <View style={styles.container}>
 
@@ -30,8 +35,8 @@ export default class Profile extends React.Component {
           style={{resizeMode: 'contain',width:220}}
         />
 
-        <Text>
-          PERFIL
+        <Text style={styles.usernameProfile}>
+          {this.state.username}
         </Text>
 
         <Button
@@ -41,6 +46,12 @@ export default class Profile extends React.Component {
           color="#7920FF"
         />
 
+        <Button
+          style={styles.button}
+          onPress={()=> this.editProfile()}
+          title="Editar perfil"
+          color="#7920FF"
+        />
 
         <Button
           style={styles.button}
@@ -50,18 +61,21 @@ export default class Profile extends React.Component {
         />
 
       </View>
-</KeyboardAvoidingView>
     );
   }
 
   signOut(){
    AsyncStorage.removeItem('ACCESS_TOKEN');
-   AsyncStorage.removeItem('USERNAME');
+   AsyncStorage.removeItem('username');
    this.props.navigation.navigate('SignedOut');
   }
 
   addRecipe(){
     this.props.navigation.navigate('AddRecipe');
+  }
+
+  editProfile(){
+    this.props.navigation.navigate('EditProfile');
   }
 }
 
@@ -82,4 +96,8 @@ const styles = StyleSheet.create({
     color:"#7920FF",
     marginTop:20
   },
+  usernameProfile:{
+    color: "#000000",
+    fontWeight: 'bold'
+  }
 });

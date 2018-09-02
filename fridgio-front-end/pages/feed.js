@@ -13,6 +13,7 @@ export default class Feed extends React.Component {
       receitas: [],
       selectedItems: [],
       items: [],
+      teste: ''
     }
   }
 
@@ -57,9 +58,12 @@ export default class Feed extends React.Component {
           confirmText= "Filtrar"
         />
 
-        <Text>
+
+
+
+        <ScrollView>
         {this.listar()}
-        </Text>
+        </ScrollView>
 
 
 
@@ -86,12 +90,13 @@ export default class Feed extends React.Component {
 
   query(){
 
-    var data = '/'+this.state.selectedItems.join('/,/')+'/';
+    var items = this.state.selectedItems;
 
+    var data = {
+      "query": items
+    }
 
-
-
-        fetch("https://cursed.studio/api/receitas", {
+        fetch("https://cursed.studio/api/query", {
            method: "POST",
            headers: {
              'Accept': 'application/json',
@@ -99,9 +104,7 @@ export default class Feed extends React.Component {
            },
            body:  JSON.stringify(data)
         })
-        .then((response)=>{
-           return response.json();
-        })
+        .then((response)=> response.json())
         .then((res)=>{
           this.setState({receitas: res});
           console.log(res);
@@ -117,7 +120,7 @@ export default class Feed extends React.Component {
             <Text style={{fontWeight: "bold"}}>Título:</Text>
             <Text>{receita.titulo}</Text>
             <Text style={{fontWeight: "bold"}}>Ingredientes:</Text>
-            <Text>{receita.ingredientes}</Text>
+            <Text>{receita.ingredientes.join(", ")}</Text>
             <Text style={{fontWeight: "bold"}}>Como fazer:</Text>
             <Text>{receita.modoPreparo}</Text>
         </View>

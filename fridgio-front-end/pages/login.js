@@ -96,7 +96,8 @@ export default class Login extends React.Component {
       if (res.sucess == true){
         this.setState({error: res.message});
         AsyncStorage.setItem('ACCESS_TOKEN', res.token);
-        AsyncStorage.setItem('USERNAME', res.username);
+        AsyncStorage.setItem('username', res.username);
+        AsyncStorage.setItem('email',res.email);
         this.props.navigation.navigate('SignedIn');
         console.log(res.token);
       }else{

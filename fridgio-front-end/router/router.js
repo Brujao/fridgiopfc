@@ -9,6 +9,7 @@ import Register from "../pages/register.js";
 import Profile from '../pages/profile.js';
 import Feed from '../pages/feed.js';
 import AddRecipe from '../pages/addRecipe.js'
+import EditProfile from '../pages/editProfile.js'
 // import Buscar from '../pages/search.js'
 
 
@@ -34,6 +35,9 @@ export const ProfileScreen = StackNavigator({
   },
   AddRecipe: {
     screen: AddRecipe,
+  },
+  EditProfile:{
+    screen: EditProfile
   }
 },
 {

@@ -78,6 +78,7 @@ export default class Register extends React.Component {
         "username":this.state.username,
         "email":this.state.email,
         "senha":this.state.senha,
+        "status": 0
     }
 
       fetch("https://cursed.studio/api/usuarios/add", {

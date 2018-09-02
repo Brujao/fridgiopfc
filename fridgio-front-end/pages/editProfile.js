@@ -4,23 +4,31 @@ console.disableYellowBox = true;
 
 import Login from './login.js'
 
-export default class AddRecipe extends React.Component {
+export default class EditProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      titulo: '',
-      ingredientes: [],
-      modoPreparo: '',
+      email: '',
       username: ''
     }
   } // Note that there is no comma after the method completion
 
   componentWillMount(){
+
+    AsyncStorage.getItem('email', (e,value) => {
+      if (!e) {
+        this.setState({email:value});
+      }
+    });
+    
     AsyncStorage.getItem('username', (e,value) => {
         if (!e) {
           this.setState({username:value});
         }
     });
+
+
+
   }
 
   render() {
@@ -28,43 +36,26 @@ export default class AddRecipe extends React.Component {
 
       <View style={styles.container}>
 
-        <Image
-        source={require('../my-icon.png')}
-        style={{resizeMode: 'contain',width:220}}
-        />
-
         <View>
           <TextInput
-          ref={(el) => { this.titulo = el; }}
+          ref={(el) => { this.username = el; }}
           style={styles.input}
-          onChangeText={(titulo) => this.setState({titulo})}
-          value={this.state.titulo}
-          placeholder="Título da receita"
+          onChangeText={(username) => this.setState({username})}
+          value={this.state.username}
+          placeholder={this.state.username}
           />
 
-          <View style={styles.textAreaContainer}>
-            <TextInput
-              multiline={true}
-              numberOfLines={10}
-              ref={(el) => { this.ingredientes = el; }}
-              style={styles.textArea}
-              onChangeText={(ingredientes) => this.setState({ingredientes})}
-              value={this.state.ingredientes}
-              placeholder="Digite ingredientes, separados por virgula"
-            />
-          </View>
-
           <TextInput
-          ref={(el) => { this.modoPreparo = el; }}
+          ref={(el) => { this.email = el; }}
           style={styles.input}
-          onChangeText={(modoPreparo) => this.setState({modoPreparo})}
-          value={this.state.modoPreparo}
-          placeholder="Digite o modo de preparo"
+          onChangeText={(email) => this.setState({email})}
+          value={this.state.email}
+          placeholder={this.state.email}
           />
 
           <Button
-            onPress={this.addRecipe.bind(this)}
-            title="Publicar"
+            onPress={this.editProfile.bind(this)}
+            title="Editar"
             color="#7920FF"
           />
 
@@ -79,26 +70,14 @@ export default class AddRecipe extends React.Component {
     );
   }
 
-  addRecipe() {
-
-    //this.props.navigation.navigate('Home');
-
-    this.titulo.clear();
-    this.ingredientes.clear();
-    this.modoPreparo.clear();
-
-
-
+  editProfile() {
 
     var data = {
-        "titulo":this.state.titulo,
-        "ingredientes":this.state.ingredientes.split(','),
-        "modoPreparo":this.state.modoPreparo,
-        "status": 0,
-        "autor": this.state.username
+        "username":this.state.username,
+        "email":this.state.email
     }
 
-      fetch("https://cursed.studio/api/receitas/add", {
+      fetch("https://cursed.studio/api/usuarios/edit", {
          method: "POST",
          headers: {
            'Accept': 'application/json',
