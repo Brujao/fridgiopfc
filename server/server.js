@@ -179,7 +179,7 @@ app.post('/api/receitas/add', (req, res) => {
 	receita.ingredientes = req.body.ingredientes;
 	receita.modoPreparo = req.body.modoPreparo;
 	receita.status = req.body.status;
-	receitas.autor = req.body.autor;
+	receita.autor = req.body.autor;
 
 	receita.save().then(()=>{
 		 res.redirect('/api/receitas');
