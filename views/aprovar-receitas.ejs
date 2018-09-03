@@ -3,25 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <title>Receitas</title>
+  <link rel="stylesheet" href="src/css/bootstrap.css">
+  <link rel="stylesheet" href="src/css/bootstrap-grid.css">
+  <link rel="stylesheet" href="src/css/bootstrap-reboot.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link rel="stylesheet" href="src/css/custom.css">
 </head>
 <body>
+  <div class="container mx-auto text-center mt-5">
   <!-- <ul class="receitas"> -->
-  <% for(var i=0; i<receitas.length; i++) {%>
-    <form action="/api/aprovacao" method="POST">
+    <span class="custom-title">Aprovar Receitas</span>
+    <% for(var i=0; i<receitas.length; i++) {%>
+    <form class="text-left mt-3" action="/api/aprovacao" method="POST">
       <input type="hidden" name="id" value="<%= receitas[i]._id %>">
-      Nome:<br>
-      <input type="text" placeholder="Nome" name="titulo" value="<%= receitas[i].titulo %>"><br>
-      Ingrediente:<br>
-      <input type="text" placeholder="Ingrediente" name="ingredientes" value="<%= receitas[i].ingredientes %>"><br>
-      Modo de Preparo:<br>
-      <input type="text" placeholder="ModoPreparo" name="modoPreparo" value="<%= receitas[i].modoPreparo %>"><br>
-      Autor: <br>
-      <input type="text" placeholder="Autor" name="autor" value="<%= receitas[i].autor %>"><br>
+      Nome
+      <input class="form-control mb-3" type="text" placeholder="Nome" name="titulo" value="<%= receitas[i].titulo %>">
+      Ingredientes
+      <textarea class="form-control mb-3" type="text" placeholder="Ingredientes" name="ingredientes" value="<%= receitas[i].ingredientes %>"></textarea>
+      Modo de Preparo
+      <textarea class="form-control" type="text" placeholder="Modo de Preparo" name="modoPreparo" value="<%= receitas[i].modoPreparo %>"></textarea>
       <input type="hidden" name="status" value="1">
       <br>
-      <button type="submit">Submit</button>
+      <button type="submit" class="btn btn-block btn-style mb-3">Aprovar</button>
     </form>
-  <% } %>
-  <a href="../api/receitas">Ver receitas</a>
+    <% } %>
+    <a href="../api/receitas" class="custom-link">Ver todas receitas</a>
+
+  </div>
+
+  <script src="src/js/bootstrap.js" charset="utf-8"></script>
+  <script src="src/js/bootstrap.bundle.js" charset="utf-8"></script>
 </body>
 </html>

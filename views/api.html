@@ -2,16 +2,33 @@
   <head>
     <meta charset="utf-8">
     <title>FRIDGIO API</title>
-    <link rel="stylesheet" type="text/css" href="/css/api.css">
+    <link rel="stylesheet" href="src/css/bootstrap.css">
+    <link rel="stylesheet" href="src/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="src/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="src/css/custom.css">
   </head>
   <body>
-    <div class="container">
-      <p>FRIDGIO API</p> <br>
-      <a href="/api/receitas">Ver receitas</a> <br>
-      <a href="/api/receitas/add">Adicionar receitas</a> <br>
-      <a href="/api/aprovacao">Aprovar receitas</a> <br>
-      <a href="/api/usuarios/add">Adicionar usuários</a> <br>
-      <a href="/api/usuarios">Ver usuários</a> <br>
+    <div class="container mx-auto text-center mt-5">
+      <img src="src/img/fridgio-logo.png" alt="">
+        <nav class="navbar navbar-expand-lg">
+        <a href="#" class="navbar-brand"></a>
+      </nav>
+
+      <div class="row">
+        <div class="col-md-6"><a href="/api/aprovacao" class="btn btn-block btn-style"><i class="fas fa-check"></i> Aprovar receitas</a></div>
+        <div class="col-md-6"><a href="/api/receitas/add" class="btn btn-block btn-style"><i class="fas fa-utensils"></i> Adicionar receitas</a></div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-6"><a href="/api/receitas" class="btn btn-block btn-style"><i class="fas fa-list-ul"></i> Ver receitas</a></div>
+        <div class="col-md-6"><a href="/api/usuarios/add" class="btn btn-block btn-style"><i class="fas fa-user-plus"></i> Adicionar usuários</a> </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-6 mx-auto"><a href="/api/usuarios" class="btn btn-block btn-style"><i class="fas fa-users"></i> Ver usuários</a></div>
+      </div>
     </div>
+
+    <script src="src/js/bootstrap.js" charset="utf-8"></script>
+    <script src="src/js/bootstrap.bundle.js" charset="utf-8"></script>
   </body>
 </html>

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
   <head>
     <meta charset="utf-8">
     <title></title>
@@ -10,18 +11,19 @@
   </head>
   <body>
     <div class="container mx-auto text-center mt-5">
-      <span class="custom-title">Adicionar Usuário</span>
-      <form class="text-left mt-3" action="/api/usuarios/add" method="POST">
-        Username
-        <input type="text" class="form-control mb-3" placeholder="Nome" name="username">
-        E-mail
-        <input type="email" class="form-control mb-3" placeholder="Email" name="email">
-         Senha
-        <input type="password" class="form-control mb-3" placeholder="Senha" name="senha">
-        <button type="submit" class="btn btn-block btn-style mb-3">Submit</button>
-      </form>
+    <img src="src/img/fridgio-logo.png" alt="">
+    <form class="text-left mt-3" action="/api/receitas/add" method="POST">
+      Usuário
+      <input type="text" class="form-control mb-3" placeholder="Nome" name="titulo">
+      Senha
+      <input type="text" class="form-control mb-4" placeholder="Nome" name="titulo">
+      <input type="hidden" name="status" value="0">
+      <button type="submit" class="btn btn-block btn-style">Submit</button>
+    </form>
     </div>
+
     <script src="src/js/bootstrap.js" charset="utf-8"></script>
     <script src="src/js/bootstrap.bundle.js" charset="utf-8"></script>
+
   </body>
 </html>
