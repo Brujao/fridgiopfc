@@ -20,7 +20,7 @@ export default class EditProfile extends React.Component {
         this.setState({email:value});
       }
     });
-    
+
     AsyncStorage.getItem('username', (e,value) => {
         if (!e) {
           this.setState({username:value});
@@ -36,7 +36,6 @@ export default class EditProfile extends React.Component {
 
       <View style={styles.container}>
 
-        <View>
           <TextInput
           ref={(el) => { this.username = el; }}
           style={styles.input}
@@ -58,8 +57,6 @@ export default class EditProfile extends React.Component {
             title="Editar"
             color="#7920FF"
           />
-
-        </View>
 
         <Text style={styles.link} onPress={() => this.props.navigation.navigate('Profile')}>
           Voltar para o perfil
@@ -107,8 +104,6 @@ const styles = StyleSheet.create({
   },
   input:{
     borderColor: '#a8a8a8',
-    borderWidth: 0.5,
-    height: 35,
     width: 300,
     color:'#7920FF',
     marginBottom:10,
@@ -119,7 +114,6 @@ const styles = StyleSheet.create({
   },
   textAreaContainer: {
     borderColor: '#a8a8a8',
-    borderWidth: 0.5,
     padding: 5,
     marginBottom: 10
   },

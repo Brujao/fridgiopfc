@@ -58,13 +58,13 @@ export const SignedIn = TabNavigator({
   Feed: {
     screen: Feed,
     navigationOptions: {
-      tabBarLabel: 'Feed',
+      tabBarLabel: 'Procura',
     }
   },
   UserProfile: {
     screen: ProfileScreen,
     navigationOptions: {
-      tabBarLabel: 'Profile',
+      tabBarLabel: 'Perfil',
     }
   }
 },
@@ -72,10 +72,10 @@ export const SignedIn = TabNavigator({
   tabBarPosition: 'bottom',
   tabBarOptions:{
     indicatorStyle:{
-          backgroundColor: '#b906ce',
+          backgroundColor: '#7920FF',
     },
-    activeTintColor: '#b906ce',
-    inactiveTintColor: '#cb6fd6',
+    activeTintColor: '#7920FF',
+    inactiveTintColor: '#9c5bff',
     style:{
       backgroundColor: "#fff",
     }

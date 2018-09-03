@@ -28,11 +28,6 @@ export default class AddRecipe extends React.Component {
 
       <View style={styles.container}>
 
-        <Image
-        source={require('../my-icon.png')}
-        style={{resizeMode: 'contain',width:220}}
-        />
-
         <View>
           <TextInput
           ref={(el) => { this.titulo = el; }}
@@ -42,24 +37,24 @@ export default class AddRecipe extends React.Component {
           placeholder="Título da receita"
           />
 
-          <View style={styles.textAreaContainer}>
-            <TextInput
-              multiline={true}
-              numberOfLines={10}
-              ref={(el) => { this.ingredientes = el; }}
-              style={styles.textArea}
-              onChangeText={(ingredientes) => this.setState({ingredientes})}
-              value={this.state.ingredientes}
-              placeholder="Digite ingredientes, separados por virgula"
-            />
-          </View>
+          <TextInput
+            multiline={true}
+            numberOfLines={10}
+            ref={(el) => { this.ingredientes = el; }}
+            style={styles.textArea}
+            onChangeText={(ingredientes) => this.setState({ingredientes})}
+            value={this.state.ingredientes}
+            placeholder="Digite ingredientes, separados por virgula"
+          />
 
           <TextInput
-          ref={(el) => { this.modoPreparo = el; }}
-          style={styles.input}
-          onChangeText={(modoPreparo) => this.setState({modoPreparo})}
-          value={this.state.modoPreparo}
-          placeholder="Digite o modo de preparo"
+            multiline={true}
+            numberOfLines={10}
+            ref={(el) => { this.modoPreparo = el; }}
+            style={styles.textArea}
+            onChangeText={(modoPreparo) => this.setState({modoPreparo})}
+            value={this.state.modoPreparo}
+            placeholder="Digite o modo de preparo"
           />
 
           <Button
@@ -67,7 +62,6 @@ export default class AddRecipe extends React.Component {
             title="Publicar"
             color="#7920FF"
           />
-
         </View>
 
         <Text style={styles.link} onPress={() => this.props.navigation.navigate('Profile')}>
@@ -121,26 +115,23 @@ export default class AddRecipe extends React.Component {
 const styles = StyleSheet.create({
   container: {
     marginTop: 25,
-    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    flex: 1,
+    flexDirection: 'column'
   },
   input:{
-    borderColor: '#a8a8a8',
-    borderWidth: 0.5,
     height: 35,
-    width: 300,
+    width:400,
     color:'#7920FF',
-    marginBottom:10,
+    marginBottom:20,
   },
   link:{
     color:"#7920FF",
     marginTop:10
   },
   textAreaContainer: {
-    borderColor: '#a8a8a8',
-    borderWidth: 0.5,
     padding: 5,
     marginBottom: 10
   },

@@ -1,6 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput,Button, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, TextInput, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, AsyncStorage } from 'react-native';
 import {StackNavigator,TabNavigator} from 'react-navigation';
+import { Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 console.disableYellowBox = true;
 
 import Register from './register.js'
@@ -27,14 +30,10 @@ export default class Profile extends React.Component {
 
   render() {
     return (
-
       <View style={styles.container}>
-
-        <Image
-          source={require('../my-icon.png')}
-          style={{resizeMode: 'contain',width:220}}
-        />
-
+        <Text style={styles.ola}>
+          Olá,
+        </Text>
         <Text style={styles.usernameProfile}>
           {this.state.username}
         </Text>
@@ -43,21 +42,27 @@ export default class Profile extends React.Component {
           style={styles.button}
           onPress={()=> this.addRecipe()}
           title="Publicar receita"
-          color="#7920FF"
+          backgroundColor="#7920FF"
+          containerViewStyle={{width: '100%',padding:5,borderRadius:10}}
+          buttonStyle={{height:100,borderRadius:10}}
         />
 
         <Button
           style={styles.button}
           onPress={()=> this.editProfile()}
           title="Editar perfil"
-          color="#7920FF"
+          backgroundColor="#7920FF"
+          containerViewStyle={{width: '100%',padding:5,borderRadius:10}}
+          buttonStyle={{height:100,borderRadius:10}}
         />
 
         <Button
           style={styles.button}
           onPress={() => this.signOut()}
           title="Logout"
-          color="#7920FF"
+          backgroundColor="#7920FF"
+          containerViewStyle={{width: '100%',padding:5,borderRadius:10}}
+          buttonStyle={{height:100,borderRadius:10}}
         />
 
       </View>
@@ -82,22 +87,19 @@ export default class Profile extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 30,
     flex: 1,
+    flexDirection:'column',
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  button:{
-    color:'#ffffff',
-    marginBottom:20
-  },
-  link:{
-    color:"#7920FF",
-    marginTop:20
-  },
   usernameProfile:{
     color: "#000000",
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize:20
+  },
+  ola:{
+    fontSize:20,
+    color: "#000000"
   }
 });
