@@ -125,6 +125,7 @@ Usuario.findOneAndUpdate({email:req.body.email},{
 		email: req.body.email
 	}
 }).then(()=>{
+     res.send({message: "Atualizado com sucesso!"});
 		 res.redirect('/api/usuarios');
 	},(e)=>{
 		res.status(400).send(e);
