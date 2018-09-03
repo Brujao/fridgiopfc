@@ -44,9 +44,7 @@ app.post('/api/login',(req,res)=>{
 
 app.post('/api/loginAdmin',(req,res)=>{
     Usuario.find({username: req.body.username, senha: req.body.senha, status:1},'status', (e,value) =>{
-			if (value.status == 1){
 				res.redirect('/api');
-			}
 		});
 });
 
