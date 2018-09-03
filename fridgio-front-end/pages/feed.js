@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput,Button, ScrollView, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView} from 'react-native';
+import { StyleSheet, Text, View, TextInput,Button, ScrollView, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, FlatList,
+	ListView} from 'react-native';
 console.disableYellowBox = true;
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 
@@ -40,7 +41,7 @@ export default class Feed extends React.Component {
   render() {
     return (
 
-      <View>
+      <View style={{flex:1}}>
 
         <SectionedMultiSelect
           items={this.state.items}
@@ -60,10 +61,13 @@ export default class Feed extends React.Component {
 
 
 
-
-        <ScrollView>
-        {this.listar()}
-        </ScrollView>
+        <FlatList style={{padding:20}}
+          data={this.state.receitas}
+          keyExtractor={(item, index) => index}
+          renderItem={({ item }) => <View style={styles.card}>
+            <Text style={styles.titulo}>{item.titulo}</Text>
+          </View>}
+        />
 
 
 
@@ -111,22 +115,6 @@ export default class Feed extends React.Component {
         });
 
   }
-
-
-  listar(){
-    return this.state.receitas.map((receita) => {
-      return (
-        <View>
-            <Text style={{fontWeight: "bold"}}>Título:</Text>
-            <Text>{receita.titulo}</Text>
-            <Text style={{fontWeight: "bold"}}>Ingredientes:</Text>
-            <Text>{receita.ingredientes.join(", ")}</Text>
-            <Text style={{fontWeight: "bold"}}>Como fazer:</Text>
-            <Text>{receita.modoPreparo}</Text>
-        </View>
-      )
-    });
-  }
 }
 
 
@@ -148,4 +136,15 @@ const styles = StyleSheet.create({
     color:"#7920FF",
     marginTop:20
   },
+  titulo:{
+    textAlign: 'left',
+    paddingLeft:5,
+    fontSize: 20,
+    height: 35,
+    marginBottom: 10,
+    borderBottomWidth:1,
+    borderBottomColor:'#2a2a2a'
+  },
+  card:{
+  }
 });
