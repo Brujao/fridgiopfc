@@ -32,7 +32,7 @@ app.post('/api/login',(req,res)=>{
 
 		if (usuario.length !== 0){
 			jwt.sign({user: usuario}, 'secretkey',(err,token)=>{
-				res.send({username: req.body.username, email:usuario.email, sucess: true, token: token, message: 'Login efeituado com sucesso'});
+				res.send({username: req.body.username, email:usuario[0].email, sucess: true, token: token, message: 'Login efeituado com sucesso'});
 			});
 		}else{
 			res.send({sucess: false, message:"Usuário e/ou senha incorretos!"});
