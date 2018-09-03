@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req,res)=>{
-	res.redirect('/api');
+    res.sendFile(path.join(__dirname, '../views', 'login.html'));
 });
 
 app.get('/api', (req,res)=>{
@@ -41,6 +41,13 @@ app.post('/api/login',(req,res)=>{
 		res.status(400).send(e);
 	});
 });
+
+app.post('/loginAdmin',(req,res)=>{
+    Usuario.find({username: req.body.username, senha: req.body.senha, status:1}).then({res.redirect('/api');});
+});
+
+
+
 // app.post('/api/loginAdmin',(req,res)=>{
 // 	Usuario.find({username: req.body.username, senha: req.body.senha, status: 1}).then((usuario)=>{
 //

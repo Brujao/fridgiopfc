@@ -12,11 +12,11 @@
   <body>
     <div class="container mx-auto text-center mt-5">
     <img src="/img/fridgio-logo.png" alt="">
-    <form class="text-left mt-3" action="/api/receitas/add" method="POST">
+    <form class="text-left mt-3" action="/api/loginAdmin" method="POST">
       Usuário
-      <input type="text" class="form-control mb-3" placeholder="Nome" name="titulo">
+      <input type="text" class="form-control mb-3" placeholder="Nome" name="username">
       Senha
-      <input type="text" class="form-control mb-4" placeholder="Nome" name="titulo">
+      <input type="text" class="form-control mb-4" placeholder="Nome" name="senha">
       <input type="hidden" name="status" value="0">
       <button type="submit" class="btn btn-block btn-style">Submit</button>
     </form>
