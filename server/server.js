@@ -43,12 +43,14 @@ app.post('/api/login',(req,res)=>{
 });
 
 app.post('/api/loginAdmin',(req,res)=>{
-    Usuario.find({username: req.body.username, senha: req.body.senha, status:1},'status', (e,value) =>{
-			if (value.status !== 0){
+    Usuario.find({username: req.body.username, senha: req.body.senha, status:1}).then((usuario) =>{
+
+			if (usuario.length !== 0){
 				res.redirect('/api');
 			}else{
 				res.redirect('/');
 			}
+
 		});
 });
 
