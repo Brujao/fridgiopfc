@@ -42,7 +42,7 @@ app.post('/api/login',(req,res)=>{
 	});
 });
 
-app.post('/loginAdmin',(req,res)=>{
+app.post('/api/loginAdmin',(req,res)=>{
     Usuario.find({username: req.body.username, senha: req.body.senha, status:1}).then((usuario) =>{
 			res.redirect('/api');
 		});
