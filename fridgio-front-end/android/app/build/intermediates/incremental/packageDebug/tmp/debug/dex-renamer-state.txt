@@ -1,4 +1,4 @@
-#Mon Sep 03 15:17:58 BRT 2018
-base.0=C\:\\Users\\dolago2k\\Documents\\fridgio\\fridgio-front-end\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\18
+#Mon Sep 03 23:54:44 BRT 2018
+base.0=C\:\\Users\\Bruno\\Desktop\\PFC\\fridgio\\fridgio-front-end\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex

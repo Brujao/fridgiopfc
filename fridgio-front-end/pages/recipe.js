@@ -34,11 +34,11 @@ export default class Recipe extends React.Component {
           {this.props.navigation.getParam('titulo', 'oi')}
         </Text>
         <Text style={styles.ingredientes}>
-          Ingredientes:
+          <Text style={{fontWeight:"bold"}}>Ingredientes:</Text>{"\n"}
           {this.props.navigation.getParam('ingredientes', 'oi')}
         </Text>
         <Text style={styles.modoPreparo}>
-          Como preparar:
+          <Text style={{fontWeight:"bold"}}>Modo de Preparo:</Text>{"\n"}
           {this.props.navigation.getParam('modoPreparo', 'oi')}
         </Text>
 
@@ -53,21 +53,26 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection:'column',
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'flex-start',
+    paddingLeft:10
   },
   titulo:{
     color: "#000000",
     fontWeight: 'bold',
-    fontSize:35
+    fontSize:35,
+    marginTop:10
   },
   ingredientes:{
     fontSize:15,
-    color: "#000000"
+    color: "#000000",
+    marginTop:40,
+    fontSize:25
   },
   modoPreparo:{
     fontSize:15,
-    color: "#000000"
+    color: "#000000",
+    marginTop:40,
+    fontSize:25
   },
   message:{
     color:"#19b72e",
