@@ -13,6 +13,7 @@ export default class Login extends React.Component {
       data: [],
       username: "",
       senha: "",
+      email: "",
       error: ""
     }
   } // Note that there is no comma after the method completion

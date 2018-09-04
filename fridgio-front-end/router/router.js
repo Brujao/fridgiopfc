@@ -10,7 +10,7 @@ import Profile from '../pages/profile.js';
 import Feed from '../pages/feed.js';
 import AddRecipe from '../pages/addRecipe.js'
 import EditProfile from '../pages/editProfile.js'
-// import Buscar from '../pages/search.js'
+import Recipe from '../pages/recipe.js'
 
 
 export const SignedOut = StackNavigator({
@@ -48,6 +48,22 @@ export const ProfileScreen = StackNavigator({
  }
 );
 
+export const FeedScreen = StackNavigator({
+  Feed: {
+    screen: Feed
+  },
+  Recipe: {
+    screen: Recipe
+  }
+},
+{
+  headerMode: 'none',
+  navigationOptions: {
+    headerVisible: false,
+  }
+ }
+);
+
 export const SignedIn = TabNavigator({
   // Buscar: {
   //   screen: Buscar,
@@ -56,7 +72,7 @@ export const SignedIn = TabNavigator({
   //   }
   // },
   Feed: {
-    screen: Feed,
+    screen: FeedScreen,
     navigationOptions: {
       tabBarLabel: 'Procura',
     }

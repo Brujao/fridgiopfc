@@ -9,7 +9,8 @@ export default class EditProfile extends React.Component {
     super(props);
     this.state = {
       email: '',
-      username: ''
+      username: '',
+      message: ''
     }
   } // Note that there is no comma after the method completion
 
@@ -52,6 +53,10 @@ export default class EditProfile extends React.Component {
           placeholder={this.state.email}
           />
 
+          <Text style={styles.message}>
+            {this.state.message}
+          </Text>
+
           <Button
             onPress={this.editProfile.bind(this)}
             title="Editar"
@@ -86,6 +91,9 @@ export default class EditProfile extends React.Component {
          return response.json();
       })
       .then((res)=>{
+        this.setState({message: res.message});
+        AsyncStorage.setItem('username', res.username);
+        AsyncStorage.setItem('message', res.message);
         this.props.navigation.navigate('Profile');
       });
   }
@@ -121,5 +129,8 @@ const styles = StyleSheet.create({
     color:'#7920FF',
     height: 150,
     textAlignVertical: 'top'
+  },
+  message:{
+    color:"#19b72e",
   }
 });

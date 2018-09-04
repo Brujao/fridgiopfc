@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, TextInput, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, AsyncStorage, } from 'react-native';
 import {StackNavigator,TabNavigator} from 'react-navigation';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -16,7 +16,8 @@ export default class Profile extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      message: ''
     }
   } // Note that there is no comma after the method completion
 
@@ -26,6 +27,7 @@ export default class Profile extends React.Component {
           this.setState({username:value});
         }
     });
+
   }
 
   render() {
@@ -101,5 +103,8 @@ const styles = StyleSheet.create({
   ola:{
     fontSize:20,
     color: "#000000"
+  },
+  message:{
+    color:"#19b72e",
   }
 });

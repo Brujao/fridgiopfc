@@ -45,7 +45,7 @@ export default class Feed extends React.Component {
 
         <SectionedMultiSelect
           items={this.state.items}
-          colors={{primary: '#b906ce'}}
+          colors={{primary: '#7920FF'}}
           uniqueKey='name'
           subKey='children'
           selectText='Escolha os ingredientes'
@@ -65,7 +65,8 @@ export default class Feed extends React.Component {
           data={this.state.receitas}
           keyExtractor={(item, index) => index}
           renderItem={({ item }) => <View style={styles.card}>
-            <Text style={styles.titulo}>{item.titulo}</Text>
+            <Text style={styles.titulo} onPress={() => this.props.navigation.navigate('Recipe',{titulo: item.titulo,
+							 ingredientes:item.ingredientes, modoPreparo: item.modoPreparo}) }>{item.titulo}</Text>
           </View>}
         />
 
@@ -75,22 +76,6 @@ export default class Feed extends React.Component {
       </View>
     );
   }
-
-  // receitas() {
-  //
-  //   fetch("https://cursed.studio/api/receitas", {
-  //      method: "GET",
-  //      headers: {
-  //        'Accept': 'application/json',
-  //        'Content-Type': 'application/json',
-  //      }
-  //   })
-  //   .then((response)=> response.json())
-  //   .then((res) =>{
-  //     this.setState({receitas: res});
-  //     console.log(res);
-  //   });
-  // }
 
   query(){
 
@@ -113,8 +98,12 @@ export default class Feed extends React.Component {
           this.setState({receitas: res});
           console.log(res);
         });
-
   }
+
+	openRecipe(){
+		this.props.navigation.navigate('Recipe')
+	}
+
 }
 
 
