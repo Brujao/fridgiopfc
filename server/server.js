@@ -137,7 +137,7 @@ Usuario.findOneAndUpdate({email:req.body.email},{
 app.post('/api/receitas/edit', (req, res) => {
 	var receita = new Receita();
 
-Receita.findByIdAndUpdate(ObjectId("5bec7beeb8f3ee001260213f"),{
+Receita.findByIdAndUpdate(req.body.id,{
 	$set: {
     favoritos: req.body.usuario
 	}
