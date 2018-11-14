@@ -3,6 +3,8 @@ var jwt = require('jsonwebtoken');
 var path = require('path');
 var bodyParser = require('body-parser');
 var {ObjectID} = require('mongodb');
+// const multer = require('multer');
+// const upload = multer({dest: 'uploads/'});
 
 var {mongoose} = require('./db/mongoose.js');
 var Receita = require('./models/receitas.js');
@@ -131,6 +133,22 @@ Usuario.findOneAndUpdate({email:req.body.email},{
 		res.status(400).send(e);
 	});
 });
+
+app.post('/api/receitas/edit', (req, res) => {
+	var receita = new Receita();
+
+Receita.findByIdAndUpdate(req.body.id,{
+	$set: {
+    favoritos: req.body.usuario
+	}
+}).then(()=>{
+		 res.send({sucess: true, message:"Favoritado com sucesso!"});
+	},(e)=>{
+		res.status(400).send(e);
+	});
+});
+
+
 
 app.get('/api/aprovacao',(req,res)=>{
 	Receita.find({status: 0}).then((receitas)=>{
