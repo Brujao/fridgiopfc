@@ -146,15 +146,16 @@ Receita.findByIdAndUpdate(req.body.id,{
 	});
 });
 
-app.post('/api/receitas/getFavorites',(req,res)=>{
-	Receita.find({_id: req.body.id, favoritos: req.body.usuario}, function(e,value){
+app.post('/api/receitas/getFavorites', (req,res)=>{
+	Receita.find({_id: req.body.id, favoritos: req.body.usuario}).then((receita)=>{
 
-    if (value.length !== 0){
+    if (receita.length !== 0){
 		    res.send({sucess: true});
-    }
   }
-}
-
+	},(e)=>{
+		res.status(400).send(e);
+	});
+});
 
 
 
