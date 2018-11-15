@@ -150,7 +150,7 @@ app.post('/api/receitas/getFavorites', (req,res)=>{
 	Receita.find({_id: req.body.id}).then((receita)=>{
 
     if (receita.length !== 0){
-		    res.send({sucess: true});
+		    res.send({sucess: true, favoritos: receita[0].favoritos});
   }
 	},(e)=>{
 		res.status(400).send(e);
