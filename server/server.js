@@ -148,6 +148,14 @@ Receita.findByIdAndUpdate(req.body.id,{
 	});
 });
 
+app.post('/api/receitas/getFavorites',(req,res)=>{
+	Receita.find({id: req.body.id },{"favoritos": 1, "_id":0}).then((receita)=>{
+		res.send({sucess: true, favoritos: receita});
+	},(e)=>{
+		res.status(400).send(e);
+	});
+});
+
 
 
 app.get('/api/aprovacao',(req,res)=>{
