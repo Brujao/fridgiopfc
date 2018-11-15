@@ -138,9 +138,8 @@ app.post('/api/receitas/edit', (req, res) => {
 	var receita = new Receita();
 
 Receita.findByIdAndUpdate(req.body.id,{
-	$set: {
-    $addToSet: {favoritos: req.body.usuario}
-  	}
+    $push: {favoritos: req.body.usuario}
+
 }).then(()=>{
 		 res.send({sucess: true, message:"Favoritado com sucesso!"});
 	},(e)=>{
