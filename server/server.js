@@ -139,7 +139,6 @@ app.post('/api/receitas/edit', (req, res) => {
 
 Receita.findByIdAndUpdate(req.body.id,{
     $push: {favoritos: req.body.usuario}
-
 }).then(()=>{
 		 res.send({sucess: true, message:"Favoritado com sucesso!"});
 	},(e)=>{
@@ -149,7 +148,10 @@ Receita.findByIdAndUpdate(req.body.id,{
 
 app.post('/api/receitas/getFavorites',(req,res)=>{
 	Receita.find({_id: req.body.id, favoritos: req.body.usuario}).then((receita)=>{
-		res.send({sucess: true});
+
+    if (receita.length !== 0){
+		    res.send({sucess: true});
+  }
 	},(e)=>{
 		res.status(400).send(e);
 	});
