@@ -157,6 +157,18 @@ app.post('/api/receitas/getFavorites', (req,res)=>{
 	});
 });
 
+app.post('/api/receitas/getFavoritesProfile', (req,res)=>{
+	Receita.find({favoritos: req.body.usuario}).then((receita)=>{
+
+    if (receita.length !== 0){
+		    res.send({sucess: true});
+        res.send(receita);
+  }
+	},(e)=>{
+		res.status(400).send(e);
+	});
+});
+
 
 
 app.get('/api/aprovacao',(req,res)=>{
