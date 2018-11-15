@@ -147,7 +147,7 @@ Receita.findByIdAndUpdate(req.body.id,{
 });
 
 app.post('/api/receitas/getFavorites',(req,res)=>{
-	Receita.find({favoritos: req.body.usuario}).then((receita)=>{
+	Receita.find({favoritos: req.body.usuario, _id: req.body.id}).then((receita)=>{
 
     if (receita.length !== 0){
 		    res.send({sucess: true});
