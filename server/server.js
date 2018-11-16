@@ -161,9 +161,8 @@ app.post('/api/receitas/getFavoritesProfile', (req,res)=>{
 	Receita.find({favoritos: req.body.usuario}).then((receita)=>{
 
     if (receita.length !== 0){
-		    res.send({sucess: true});
-        res.send(receita);
-  }
+		    res.send({sucess: true, receita: receita});
+    }
 	},(e)=>{
 		res.status(400).send(e);
 	});
