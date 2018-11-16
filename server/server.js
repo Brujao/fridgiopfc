@@ -158,11 +158,12 @@ app.post('/api/receitas/getFavorites', (req,res)=>{
 });
 
 app.post('/api/receitas/getFavoritesProfile', (req,res)=>{
-	Receita.find({favoritos: req.body.usuario}).then((receita)=>{
+  var user = req.body.usuario;
+	Receita.find({favoritos: user}).then((receita)=>{
 
-    // if (receita.length !== 0){
+     if (receita.length !== 0){
 		    res.send(receita);
-    // }
+     }
 	},(e)=>{
 		res.status(400).send(e);
 	});
