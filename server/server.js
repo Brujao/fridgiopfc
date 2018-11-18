@@ -221,13 +221,13 @@ app.post('/api/query', (req,res)=>{
         if (receitas.length !== 0){
 				res.send({sucess: true, message: 'Aqui estão as receitas:', receitas: receitas});
         }
-        // else{
-        //   Receita.find({status:1, ingredientes: req.body.query}).then((receitas)=>{
-        //     if (receitas.length !== 0){
-        //       res.send({message:'Que pena, não encontramos receitas com esses ingredientes, mas achamos que possa gostar dessas:', receitas: receitas});
-        //     }
-        //   });
-        // }
+        else{
+          Receita.find({status:1, ingredientes: req.body.query}).then((receitas)=>{
+            if (receitas.length !== 0){
+              res.send({message:'Que pena, não encontramos receitas com esses ingredientes, mas achamos que possa gostar dessas:', receitas: receitas});
+            }
+          });
+        }
 				//res.render(path.join(__dirname, '../views', 'lista-receitas.ejs'), {receitas: receitas});
 			},(e)=>{
 				res.status(400).send(e);
