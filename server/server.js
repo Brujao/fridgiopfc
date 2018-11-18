@@ -216,9 +216,9 @@ app.post('/api/query', (req,res)=>{
 	// 		res.sendStatus(403);
 	// 	}else{
 
-  Receita.find({ingredientes: "Frango" }).then((receitasrec)=>{
+  Receita.find({ingredientes: req.body.query }).then((receitasrec)=>{
     if (receitas.length !== 0){
-      res.send(receitasrec);
+      res.send({sucess: true, receitas: receitasrec});
     }
   });
 
