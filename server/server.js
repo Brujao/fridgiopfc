@@ -234,12 +234,11 @@ app.post('/api/query', (req,res)=>{
 			var regex = query.map(function (e) { return new RegExp(e); });
 			Receita.find({status: 1, ingredientes:{ $not: { $elemMatch: { $nin: regex } } }}).then((receitas)=>{
         if (receitas.length !== 0){
-				res.send({sucess: true, message: 'Aqui estão as receitas:', receitas: receitas});
-        Receita.find({status: 1, ingredientes: {$elemMatch: { $in: regex }}}).then((recomend)=>{
-          if (recomend.length !== 0){
-            res.send({rec: true, message2:'achamos que possa gostar dessas tambem:', recomend: recomend});
-          }
-        });
+          Receita.find({status: 1, ingredientes: {$elemMatch: { $in: regex }}}).then((recomend)=>{
+            if (recomend.length !== 0){
+              res.send({sucess: true, message: 'Aqui estão as receitas:', receitas: receitas, rec: true, message2:'achamos que possa gostar dessas tambem:', recomend: recomend});
+            }
+          });
         }
         else{
           Receita.find({status: 1, ingredientes: {$elemMatch: { $in: regex }}}).then((receitasrec)=>{
