@@ -218,7 +218,7 @@ app.post('/api/query', (req,res)=>{
 
   Receita.find({ingredientes: req.body.query }).then((receitasrec)=>{
     if (receitas.length !== 0){
-      res.send({rec: true, message:'Que pena, não encontramos receitas com esses ingredientes, mas achamos que possa gostar dessas:', receitas: receitasrec});
+      res.send(receitasrec);
     }
   });
 
