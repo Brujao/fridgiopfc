@@ -12,6 +12,15 @@
   box-shadow: 10px 10px 49px -2px rgba(0,0,0,0.19);
 }
 
+.container-login{
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  -webkit-box-shadow: 10px 10px 49px -2px rgba(0,0,0,0.19);
+  -moz-box-shadow: 10px 10px 49px -2px rgba(0,0,0,0.19);
+  box-shadow: 10px 10px 49px -2px rgba(0,0,0,0.19);
+}
+
 body{
   background-image: url(../img/background.png);
   background-size: cover;
