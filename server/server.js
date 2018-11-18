@@ -209,15 +209,6 @@ app.get('/api/receitas/add',(req, res)=>{
 		res.sendFile(path.join(__dirname, '../views', 'add.html'));
 });
 
-app.post('/api/requery', (req,res)=>{
-  var query = req.body.query;
-  var regex = query.map(function (e) { return new RegExp(e); });
-  Receita.find({ingredientes: { $in: regex}}).then((receitasrec)=>{
-    if (receitas.length !== 0){
-      res.send(receitasrec);
-    }
-  });
-});
 
 
 app.post('/api/query', (req,res)=>{
@@ -234,7 +225,7 @@ app.post('/api/query', (req,res)=>{
 				res.send({sucess: true, message: 'Aqui estão as receitas:', receitas: receitas});
         }
         else{
-          Receita.find({status: 1, ingredientes: req.body.query}).then((receitasrec)=>{
+          Receita.find({status: 1, ingredientes: {$in: regex }}).then((receitasrec)=>{
             if (receitas.length !== 0){
               res.send({sucess: true, message:'Que pena, não encontramos receitas com esses ingredientes, mas achamos que possa gostar dessas:', receitas: receitasrec});
             }
