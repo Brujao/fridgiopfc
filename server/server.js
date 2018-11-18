@@ -225,7 +225,7 @@ app.post('/api/query', (req,res)=>{
           Receita.find({status:1, ingredientes: req.body.query}).then((receitas)=>{
             if (receitas.length !== 0){
               res.send({message:'Que pena, não encontramos receitas com esses ingredientes, mas achamos que possa
-               gostar dessas:', receitas: receitas});
+               gostar dessas', receitas: receitas});
             }
           });
         }
