@@ -209,6 +209,15 @@ app.get('/api/receitas/add',(req, res)=>{
 		res.sendFile(path.join(__dirname, '../views', 'add.html'));
 });
 
+app.post('/api/requery',(req,res)=>{
+  Receita.find({status: 1, ingredientes: {$elemMatch: { $in: ["Frango"] }}}).then((receitasrec)=>{
+    if (receitas.length !== 0){
+      res.send({sucess: true, message:'Que pena, não encontramos receitas com esses ingredientes, mas achamos que possa gostar dessas:', receitas: receitasrec});
+    }
+  });
+
+});
+
 
 
 app.post('/api/query', (req,res)=>{
