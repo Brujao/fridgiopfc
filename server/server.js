@@ -228,7 +228,6 @@ app.post('/api/query', (req,res)=>{
                gostar dessas:', receitas: receitas});
             }
           });
-
         }
 				//res.render(path.join(__dirname, '../views', 'lista-receitas.ejs'), {receitas: receitas});
 			},(e)=>{
