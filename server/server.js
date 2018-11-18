@@ -216,11 +216,6 @@ app.post('/api/query', (req,res)=>{
 	// 		res.sendStatus(403);
 	// 	}else{
 
-  Receita.find({ingredientes: req.body.query }).then((receitasrec)=>{
-    if (receitas.length !== 0){
-      res.send({sucess: true, receitas: receitasrec});
-    }
-  });
 
 			var query = req.body.query;
 			var regex = query.map(function (e) { return new RegExp(e); });
@@ -228,7 +223,13 @@ app.post('/api/query', (req,res)=>{
         if (receitas.length !== 0){
 				res.send({sucess: true, message: 'Aqui estão as receitas:', receitas: receitas});
         }
-
+        else{
+          Receita.find({ingredientes: regex }).then((receitasrec)=>{
+            if (receitas.length !== 0){
+              res.send({rec: true, message:'Que pena, não encontramos receitas com esses ingredientes, mas achamos que possa gostar dessas:', receitas: receitasrec});
+            }
+          });
+        }
 				//res.render(path.join(__dirname, '../views', 'lista-receitas.ejs'), {receitas: receitas});
 			},(e)=>{
 				res.status(400).send(e);
