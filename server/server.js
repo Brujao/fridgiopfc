@@ -211,8 +211,8 @@ app.get('/api/receitas/add',(req, res)=>{
 
 app.post('/api/requery',(req,res)=>{
   Receita.find({status: 1, ingredientes: {$elemMatch: { $in: ["Frango"] }}}).then((receitasrec)=>{
-    if (receitas.length !== 0){
-      res.send({sucess: true, message:'Que pena, não encontramos receitas com esses ingredientes, mas achamos que possa gostar dessas:', receitas: receitasrec});
+    if (receitasrec.length !== 0){
+      res.send({sucess: true, message:'achamos que possa gostar dessas tambem:', recomend: receitasrec});
     }
     else{
       res.send({message: 'deu errado'});
@@ -235,14 +235,16 @@ app.post('/api/query', (req,res)=>{
 			Receita.find({status: 1, ingredientes:{ $not: { $elemMatch: { $nin: regex } } }}).then((receitas)=>{
         if (receitas.length !== 0){
 				res.send({sucess: true, message: 'Aqui estão as receitas:', receitas: receitas});
+        Receita.find({status: 1, ingredientes: {$elemMatch: { $in: regex }}}).then((recomend)=>{
+          if (recomend.length !== 0){
+            res.send({rec: true, message2:'achamos que possa gostar dessas tambem:', recomend: recomend});
+          }
+        });
         }
         else{
           Receita.find({status: 1, ingredientes: {$elemMatch: { $in: regex }}}).then((receitasrec)=>{
             if (receitasrec.length !== 0){
-              res.send({sucess: true, message:'Que pena, não encontramos receitas com esses ingredientes, mas achamos que possa gostar dessas:', receitas: receitasrec});
-            }
-            else{
-              res.send({message: 'ops deu ruim'});
+              res.send({rec: true, message:'Que pena, não encontramos receitas com esses ingredientes, mas achamos que possa gostar dessas:', recomend: receitasrec});
             }
           });
         }
