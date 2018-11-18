@@ -13,8 +13,8 @@
 }
 
 body{
-  background-color:;
-  background-size: contain;
+  background-image: url(../img/background.png);
+  background-size: cover;
   background-repeat: no-repeat;
   font-family: gotham;
 }
@@ -22,31 +22,56 @@ body{
 .custom-title{
   font-family: gotham;
   font-size: 25px;
-  color: #7645bc;
+  color: #C198FF;
 }
 
-.custom-link{
-  color:#7645bc;
+.label-fila{
+  color:#434343;
 }
 
 .custom-link:hover{
-  color:#7645bc;
+  color:#A07DE2;
   text-decoration: none;
 }
 
 .btn-style{
-  background-color:#7645bc;
+  background-color:#C198FF;
   color:#ffffff;
   font-family: gotham;
   padding:15px;
 }
 
+.btn-style-modal{
+  background-color:#C198FF;
+  color:#ffffff;
+  font-family: gotham;
+}
+
+.btn-style-modal-secondary{
+  background-color:#434343;
+  color:#ffffff;
+  font-family: gotham;
+}
+
+.recipe-image{
+  width: 100%;
+  border-radius: 10px;
+}
+
 .btn-style:hover{
-  background-color: #5d3696;
+  background-color: #A07DE2;
   color:white;
   font-family: gotham;
 }
 
+.container-login{
+  max-width:55vmin;
+}
+
 .container{
-  max-width:80vmin;
+  max-width:115vmin;
+}
+
+.logo-size{
+  max-width: 70%;
 }
