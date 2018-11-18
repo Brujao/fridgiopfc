@@ -210,7 +210,7 @@ app.get('/api/receitas/add',(req, res)=>{
 });
 
 app.post('/api/requery', (req,res)=>{
-  Receita.find({"ingredientes": { "$in": req.body.query}}).then((receitasrec)=>{
+  Receita.find({ingredientes: { $in: req.body.query}}).then((receitasrec)=>{
     if (receitas.length !== 0){
       res.send(receitasrec);
     }
