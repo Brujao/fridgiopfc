@@ -214,6 +214,9 @@ app.post('/api/requery',(req,res)=>{
     if (receitas.length !== 0){
       res.send({sucess: true, message:'Que pena, não encontramos receitas com esses ingredientes, mas achamos que possa gostar dessas:', receitas: receitasrec});
     }
+    else{
+      res.send({message: 'deu errado'});
+    }
   });
 
 });
