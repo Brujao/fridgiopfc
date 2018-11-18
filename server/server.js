@@ -223,7 +223,7 @@ app.post('/api/query', (req,res)=>{
         if (receitas.length !== 0){
 				res.send({sucess: true, message: 'Aqui estão as receitas:', receitas: receitas});
         }
-        if (receitas.length == 0){
+        else{
           Receita.find({ingredientes: regex }).then((receitasrec)=>{
             if (receitas.length !== 0){
               res.send({sucess: true, message:'Que pena, não encontramos receitas com esses ingredientes, mas achamos que possa gostar dessas:', receitas: receitasrec});
