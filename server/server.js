@@ -215,6 +215,13 @@ app.post('/api/query', (req,res)=>{
 	// 	if(err){
 	// 		res.sendStatus(403);
 	// 	}else{
+
+  Receita.find({ingredientes: req.body.query }).then((receitasrec)=>{
+    if (receitas.length !== 0){
+      res.send({rec: true, message:'Que pena, não encontramos receitas com esses ingredientes, mas achamos que possa gostar dessas:', receitas: receitasrec});
+    }
+  });
+
 			var query = req.body.query;
 			var regex = query.map(function (e) { return new RegExp(e); });
 			Receita.find({status: 1, ingredientes:{ $not: { $elemMatch: { $nin: regex } } }}).then((receitas)=>{
