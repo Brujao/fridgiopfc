@@ -14,7 +14,9 @@ export default class Feed extends React.Component {
       receitas: [],
       selectedItems: [],
       items: [],
-      teste: ''
+      message: '',
+			message2: '',
+			recomend: []
     }
   }
 
@@ -65,11 +67,23 @@ export default class Feed extends React.Component {
           data={this.state.receitas}
           keyExtractor={(item, index) => index}
           renderItem={({ item }) => <View style={styles.card}>
-            <Text style={styles.titulo} onPress={() => this.props.navigation.navigate('Recipe',{titulo: item.titulo,
-							 ingredientes:item.ingredientes, modoPreparo: item.modoPreparo}) }>{item.titulo}</Text>
+            <Text style={styles.titulo} onPress={() => this.props.navigation.navigate('Recipe',{id: item._id, titulo: item.titulo,
+							 ingredientes:item.ingredientes, modoPreparo: item.modoPreparo, autor: item.autor}) }>{item.titulo}</Text>
           </View>}
         />
 
+				<Text style={styles.titulo}>
+					{this.state.message2}
+				</Text>
+
+				<FlatList style={{padding:20}}
+					data={this.state.recomend}
+					keyExtractor={(item, index) => index}
+					renderItem={({ item }) => <View style={styles.card}>
+						<Text style={styles.titulo} onPress={() => this.props.navigation.navigate('Recipe',{id: item._id, titulo: item.titulo,
+							 ingredientes:item.ingredientes, modoPreparo: item.modoPreparo, autor: item.autor}) }>{item.titulo}</Text>
+					</View>}
+				/>
 
 
 
@@ -95,7 +109,17 @@ export default class Feed extends React.Component {
         })
         .then((response)=> response.json())
         .then((res)=>{
-          this.setState({receitas: res});
+					if (res.sucess == true) {
+						this.setState({receitas: res.receitas});
+						this.setState({message: res.message});
+						this.setState({recomend: res.recomend});
+					}
+					if (res.rec == true) {
+						this.setState({recomend: res.recomend});
+						this.setState({message2: res.message2});
+					}
+
+
           console.log(res);
         });
   }

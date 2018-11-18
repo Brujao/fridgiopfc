@@ -9,6 +9,7 @@ console.disableYellowBox = true;
 import Register from './register.js'
 import Login from './login.js'
 import AddRecipe from './addRecipe.js'
+import Favoritos from './favoritos.js'
 import {SignedOut,SignedIn,RootNavigator} from '../router/router.js'
 
 export default class Profile extends React.Component {
@@ -39,6 +40,15 @@ export default class Profile extends React.Component {
         <Text style={styles.usernameProfile}>
           {this.state.username}
         </Text>
+
+        <Button
+          style={styles.button}
+          onPress={()=> this.openFavorites()}
+          title="Favoritos"
+          backgroundColor="#7920FF"
+          containerViewStyle={{width: '100%',padding:5,borderRadius:10}}
+          buttonStyle={{height:100,borderRadius:10}}
+        />
 
         <Button
           style={styles.button}
@@ -75,6 +85,10 @@ export default class Profile extends React.Component {
    AsyncStorage.removeItem('ACCESS_TOKEN');
    AsyncStorage.removeItem('username');
    this.props.navigation.navigate('SignedOut');
+  }
+
+  openFavorites(){
+    this.props.navigation.navigate('Favoritos',{username: this.state.username});
   }
 
   addRecipe(){

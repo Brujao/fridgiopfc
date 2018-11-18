@@ -11,6 +11,7 @@ import Feed from '../pages/feed.js';
 import AddRecipe from '../pages/addRecipe.js'
 import EditProfile from '../pages/editProfile.js'
 import Recipe from '../pages/recipe.js'
+import Favoritos from '../pages/favoritos.js'
 
 
 export const SignedOut = StackNavigator({
@@ -37,7 +38,10 @@ export const ProfileScreen = StackNavigator({
     screen: AddRecipe,
   },
   EditProfile:{
-    screen: EditProfile
+    screen: EditProfile,
+  },
+  Favoritos: {
+    screen: Favoritos
   }
 },
 {

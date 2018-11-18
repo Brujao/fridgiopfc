@@ -11,7 +11,8 @@ export default class AddRecipe extends React.Component {
       titulo: '',
       ingredientes: [],
       modoPreparo: '',
-      username: ''
+      username: '',
+      favoritos: '',
     }
   } // Note that there is no comma after the method completion
 
@@ -89,7 +90,8 @@ export default class AddRecipe extends React.Component {
         "ingredientes":this.state.ingredientes.split(','),
         "modoPreparo":this.state.modoPreparo,
         "status": 0,
-        "autor": this.state.username
+        "autor": this.state.username,
+        "favoritos": this.state.favoritos
     }
 
       fetch("https://cursed.studio/api/receitas/add", {
@@ -123,7 +125,7 @@ const styles = StyleSheet.create({
   },
   input:{
     height: 35,
-    width:400,
+    width:300,
     color:'#7920FF',
     marginBottom:20,
   },
