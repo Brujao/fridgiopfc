@@ -222,7 +222,7 @@ app.post('/api/query', (req,res)=>{
 	// 	}else{
 
 
-			var query = req.body.query;
+			var query = req.body.query.replace('"','/');
 			var regex = query.map(function (e) { return new RegExp(e); });
 			Receita.find({status: 1, ingredientes:{ $not: { $elemMatch: { $nin: regex } } }}).then((receitas)=>{
         if (receitas.length !== 0){
@@ -273,7 +273,7 @@ app.post('/api/receitas/add', (req, res) => {
   receita.favoritos = req.body.favoritos;
 
 	receita.save().then(()=>{
-    
+
 	},(e)=>{
 		res.status(400).send(e);
 	});
