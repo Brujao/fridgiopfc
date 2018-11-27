@@ -224,7 +224,7 @@ app.post('/api/query', (req,res)=>{
 
 			var query = req.body.query.replace('"','/');
 			var regex = query.map(function (e) { return new RegExp(e); });
-			Receita.find({status: 1, ingredientes:{ $not: { $elemMatch: { $nin: regex } } }}).then((receitas)=>{
+			Receita.find({status: 1, ingredientes:{ $not: { $elemMatch: { $nin: {$regex: {regex} } } }}).then((receitas)=>{
         if (receitas.length !== 0){
           Receita.find({status: 1, ingredientes: {$elemMatch: { $in: regex }}}).then((recomend)=>{
             if (recomend.length !== 0){
