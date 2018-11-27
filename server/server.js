@@ -273,7 +273,7 @@ app.post('/api/receitas/add', (req, res) => {
   receita.favoritos = req.body.favoritos;
 
 	receita.save().then(()=>{
-		 res.redirect('/api/receitas');
+		 
 	},(e)=>{
 		res.status(400).send(e);
 	});
