@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Receitas</title>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/bootstrap-grid.css">
+  <link rel="stylesheet" href="/css/bootstrap-reboot.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/custom.css">
+</head>
+<body>
+  <div class="container mx-auto text-center mt-5">
+  <!-- <ul class="receitas"> -->
+    <span class="custom-title">Aprovar Receitas</span>
+    <% for(var i=0; i<receitas.length; i++) {%>
+    <form class="text-left mt-3" action="/api/aprovacao" method="POST">
+      <div class="row">
+        <div class="col-md-6">
+          <input type="hidden" name="id" value="<%= receitas[i]._id %>">
+            Nome
+          <input class="form-control mb-3" type="text" placeholder="Nome" name="titulo" value="<%= receitas[i].titulo %>">
+            Ingredientes
+          <input class="form-control mb-3" type="text" placeholder="Ingredientes" name="ingredientes" value="<%= receitas[i].ingredientes %>">
+            Modo de Preparo
+          <input class="form-control" type="text" placeholder="Modo de Preparo" name="modoPreparo" value="<%= receitas[i].modoPreparo %>">
+          <input type="hidden" name="status" value="1">
+        </div>
+        <div class="col-md-6">
+          Foto da Receita
+          <img src="https://img.cybercook.uol.com.br/imagens/receitas/629/bobo-de-camarao-5.jpg" alt="" class="recipe-image">
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-block btn-style mb-3 mt-3" data-toggle="modal" data-target="#exampleModalCenter">
+        Aprovar
+      </button>
+
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Confirmação de dados</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Confirma que todos os dados da receita estão corretos?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-style-modal-secondary" data-dismiss="modal">Fechar</button>
+              <button type="submit" class="btn btn-style-modal">Confirmar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <% } %>
+    <span class="label-fila"><b>5 Receitas </b>na fila de aprovação</span>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="/js/bootstrap.js" charset="utf-8"></script>
+  <script src="/js/bootstrap.bundle.js" charset="utf-8"></script>
+</body>
+</html>

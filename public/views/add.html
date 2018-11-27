@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="/css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/custom.css">
+  </head>
+  <body>
+    <div class="container mx-auto text-center mt-5">
+    <span class="custom-title">Adicionar Receitas</span>
+    <form class="text-left mt-3" action="/api/receitas/add" method="POST">
+      Titulo
+      <input type="text" class="form-control mb-3" placeholder="Nome" name="titulo">
+      Ingredientes
+      <textarea class="form-control mb-3" type="text" placeholder="Ingredientes" name="ingredientes" value=""></textarea>
+      Modo de Preparo
+      <textarea name="modoPreparo" placeholder="Modo de Preparo" class="form-control mb-3"></textarea>
+      <input type="hidden" name="status" value="0">
+      <button type="submit" class="btn btn-block btn-style mb-3">Submit</button>
+    </form>
+    </div>
+
+    <script src="/js/bootstrap.js" charset="utf-8"></script>
+    <script src="/js/bootstrap.bundle.js" charset="utf-8"></script>
+
+  </body>
+</html>

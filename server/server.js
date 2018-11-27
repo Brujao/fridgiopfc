@@ -209,9 +209,7 @@ app.get('/api/ingredientes', (req,res)=>{
 	});
 });
 
-app.get('/api/receitas/add',(req, res)=>{
-		res.sendFile(path.join(__dirname, '../views', 'add.html'));
-});
+
 
 
 

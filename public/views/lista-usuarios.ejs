@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Usuários</title>
+</head>
+<body>
+  <ul class="usuarios">
+  <% for(var i=0; i<usuarios.length; i++) {%>
+    <li class="usuario">
+      <span><%= usuarios[i].username %></span>
+    </li>
+  <% } %>
+  </ul>
+
+  <a href="../api/usuarios/add">Adicionar novo usuário</a>
+</body>
+</html>
