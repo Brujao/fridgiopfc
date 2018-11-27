@@ -209,9 +209,7 @@ app.get('/api/ingredientes', (req,res)=>{
 	});
 });
 
-app.get('/api/receitas/add',(req, res)=>{
-		res.sendFile(path.join(__dirname, '../views', 'add.html'));
-});
+
 
 
 
@@ -265,7 +263,21 @@ app.get('/api/receitas', (req,res)=>{
 // });
 
 
+app.post('/api/receitas/add', (req, res) => {
+	var receita = new Receita();
+	receita.titulo = req.body.titulo;
+	receita.ingredientes = req.body.ingredientes;
+	receita.modoPreparo = req.body.modoPreparo;
+	receita.status = req.body.status;
+	receita.autor = req.body.autor;
+  receita.favoritos = req.body.favoritos;
 
+	receita.save().then(()=>{
+		 res.redirect('/api/receitas');
+	},(e)=>{
+		res.status(400).send(e);
+	});
+});
 
 app.listen(port, ()=>{
 	console.log(`Started on port ${port}`);
