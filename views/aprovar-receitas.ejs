@@ -17,13 +17,13 @@
     <form class="text-left mt-3" action="/api/aprovacao" method="POST">
       <div class="row">
         <div class="col-md-6">
-          <input type="hidden" name="id" value="<%= receitas[i]._id %>">
+          <input type="hidden" name="id" value="<%= receitas[0]._id %>">
             Nome
-          <input class="form-control mb-3" type="text" placeholder="Nome" name="titulo" value="<%= receitas[i].titulo %>">
+          <input class="form-control mb-3" type="text" placeholder="Nome" name="titulo" value="<%= receitas[0].titulo %>">
             Ingredientes
-          <input class="form-control mb-3" type="text" placeholder="Ingredientes" name="ingredientes" value="<%= receitas[i].ingredientes %>">
+          <input class="form-control mb-3" type="text" placeholder="Ingredientes" name="ingredientes" value="<%= receitas[0].ingredientes %>">
             Modo de Preparo
-          <input class="form-control" type="text" placeholder="Modo de Preparo" name="modoPreparo" value="<%= receitas[i].modoPreparo %>">
+          <input class="form-control" type="text" placeholder="Modo de Preparo" name="modoPreparo" value="<%= receitas[0].modoPreparo %>">
           <input type="hidden" name="status" value="1">
         </div>
         <div class="col-md-6">
