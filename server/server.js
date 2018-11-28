@@ -23,7 +23,6 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-
 app.get('/', (req,res)=>{
     res.sendFile(path.join(__dirname, '../views', 'login.html'));
 });
@@ -182,12 +181,42 @@ app.get('/api/aprovacao',(req,res)=>{
 	});
 });
 
-app.post('/api/aprovacao', (req, res) => {
+app.post('/file_upload', upload.single('file'), function(req, res) {
+  var file = __dirname + '/' + req.file.filename;
+  fs.rename(req.file.path, file, function(err) {
+    if (err) {
+      console.log(err);
+      res.send(500);
+    } else {
+      res.json({
+        message: 'File uploaded successfully',
+        filename: req.file.filename
+      });
+    }
+  });
+});
+
+app.post('/api/aprovacao', upload.single('file'), (req, res) => {
+
+  var file = __dirname + '/' + req.file.filename;
+  fs.rename(req.file.path, file, function(err) {
+    if (err) {
+      console.log(err);
+      res.send(500);
+    } else {
+      res.json({
+        message: 'File uploaded successfully',
+        filename: req.file.filename
+      });
+    }
+  });
+  
 	var receita = new Receita();
 
 Receita.findByIdAndUpdate(req.body.id,{
 	$set: {
 		titulo:req.body.titulo,
+    foto: file,
 		ingredientes:req.body.ingredientes.split(','), //
 		modoPreparo:req.body.modoPreparo,
 		status:req.body.status
