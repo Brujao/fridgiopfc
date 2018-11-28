@@ -14,7 +14,7 @@ var storage = multer.diskStorage({
   }
 });
 
-var upload = multer({ storage: storage });
+var upload = multer({ dest: './uploads' });
 
 
 var {mongoose} = require('./db/mongoose.js');
@@ -207,7 +207,7 @@ app.post('/file_upload', upload.single('file'), function(req, res) {
 
 app.post('/api/aprovacao', upload.single('file'), (req, res) => {
 
-  var file = __dirname + '/' + req.file.filename;
+  var file = __dirname + '/' + req.file.filename + '.png';
   fs.rename(req.file.path, file, function(err) {
     if (err) {
       console.log(err);
