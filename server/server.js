@@ -7,10 +7,10 @@ var fs = require('fs');
 var multer = require('multer');
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'C:\Users\dolago2k\Documents\cursed-studio\server\uploads')
+    cb(null, './uploads')
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now().toISOString().replace(/:/g, '-'))
+    cb(null, file.fieldname)
   }
 });
 
