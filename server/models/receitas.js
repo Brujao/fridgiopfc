@@ -9,9 +9,7 @@ var receitaSchema = mongoose.Schema({
   	},
     foto: {
       data: Buffer,
-      contentType: String,
-  		minlength: 1,
-  		trim: true
+      contentType: String
     },
     ingredientes: {
       type: [String],
