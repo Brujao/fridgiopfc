@@ -14,7 +14,7 @@ var storage = multer.diskStorage({
   }
 });
 
-var upload = multer({ storage: storage });
+var upload = multer({ dest: './uploads' });
 
 
 var {mongoose} = require('./db/mongoose.js');
