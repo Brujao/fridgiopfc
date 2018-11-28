@@ -198,7 +198,7 @@ app.post('/file_upload', upload.single('file'), function(req, res) {
 
 app.post('/api/aprovacao', upload.single('file'), (req, res) => {
 
-  var file = __dirname + '/' + req.file.filename;
+  var file = path.join(__dirname, "./uploads/image.png");
   fs.rename(req.file.path, file, function(err) {
     if (err) {
       console.log(err);
@@ -216,7 +216,7 @@ app.post('/api/aprovacao', upload.single('file'), (req, res) => {
 Receita.findByIdAndUpdate(req.body.id,{
 	$set: {
 		titulo:req.body.titulo,
-    foto: req.file.path,
+    foto: file,
 		ingredientes:req.body.ingredientes.split(','), //
 		modoPreparo:req.body.modoPreparo,
 		status:req.body.status
