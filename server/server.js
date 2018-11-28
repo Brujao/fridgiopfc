@@ -6,7 +6,7 @@ var {ObjectID} = require('mongodb');
 var fs = require('fs');
 var multer = require('multer');
 
-var upload = multer({ dest: './uploads'});
+var upload = multer({ dest: './uploads/'});
 
 
 var {mongoose} = require('./db/mongoose.js');
