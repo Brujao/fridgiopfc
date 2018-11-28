@@ -231,14 +231,14 @@ app.post('/api/query', (req,res)=>{
         if (receitas.length !== 0){
           Receita.find({status: 1, ingredientes: {$elemMatch: { $in: regex }}}).then((recomend)=>{
             if (recomend.length !== 0){
-              res.send({sucess: true, message: 'Aqui estão as receitas:', receitas: receitas, rec: true, message2:'achamos que possa gostar dessas tambem:', recomend: recomend});
+              res.send({sucess: true, message: 'Aqui estão as receitas:', receitas: receitas, rec: true, message2:'Recomendamos também essas receitas:', recomend: recomend});
             }
           });
         }
         else{
           Receita.find({status: 1, ingredientes: {$elemMatch: { $in: regex }}}).then((receitasrec)=>{
             if (receitasrec.length !== 0){
-              res.send({rec: true, message:'Que pena, não encontramos receitas com esses ingredientes, mas achamos que possa gostar dessas:', recomend: receitasrec});
+              res.send({rec: true, message:'Recomendamos também essas receitas:', recomend: receitasrec});
             }
           });
         }
