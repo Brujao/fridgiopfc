@@ -215,7 +215,8 @@ app.post('/api/aprovacao', upload.single('file'), (req, res) => {
     } else {
       res.json({
         message: 'File uploaded successfully',
-        filename: req.file.filename
+        filename: req.file.filename,
+        filepath: req.file.path
       });
     }
   });
@@ -225,7 +226,7 @@ app.post('/api/aprovacao', upload.single('file'), (req, res) => {
 Receita.findByIdAndUpdate(req.body.id,{
 	$set: {
 		titulo:req.body.titulo,
-    foto: req.file.filename,
+    foto: req.file.path,
 		ingredientes:req.body.ingredientes.split(','), //
 		modoPreparo:req.body.modoPreparo,
 		status:req.body.status
