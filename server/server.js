@@ -7,14 +7,14 @@ var fs = require('fs');
 var multer = require('multer');
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './uploads/')
+    cb(null, './uploads')
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname)
+    cb(null, file.fieldname + '.png')
   }
 });
 
-var upload = multer({ dest: './uploads' });
+var upload = multer({ storage: storage });
 
 
 var {mongoose} = require('./db/mongoose.js');
