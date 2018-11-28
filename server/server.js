@@ -5,7 +5,16 @@ var bodyParser = require('body-parser');
 var {ObjectID} = require('mongodb');
 var fs = require('fs');
 var multer = require('multer');
-var upload = multer({ dest: './uploads/' });
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+});
+
+var upload = multer({ storage: storage });
 
 
 var {mongoose} = require('./db/mongoose.js');
@@ -198,7 +207,7 @@ app.post('/file_upload', upload.single('file'), function(req, res) {
 
 app.post('/api/aprovacao', upload.single('file'), (req, res) => {
 
-  var file = "./uploads/image.png";
+  var file = __dirname + '/' + req.file.filename;
   fs.rename(req.file.path, file, function(err) {
     if (err) {
       console.log(err);
