@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput,Button, ScrollView, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, FlatList,
+import { StyleSheet, Text, View, TextInput, ScrollView, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, FlatList,
 	ListView} from 'react-native';
+import { Button,Card } from 'react-native-elements';
 console.disableYellowBox = true;
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
-
 import Register from './register.js'
 
 export default class Feed extends React.Component {
@@ -47,7 +47,7 @@ export default class Feed extends React.Component {
 
         <SectionedMultiSelect
           items={this.state.items}
-          colors={{primary: '#7920FF'}}
+          colors={{primary: '#C198FF'}}
           uniqueKey='name'
           subKey='children'
           selectText='Escolha os ingredientes'
@@ -63,26 +63,32 @@ export default class Feed extends React.Component {
 
 
 
-        <FlatList style={{padding:20}}
+        <FlatList style={{paddingLeft:10,paddingRight:10}}
           data={this.state.receitas}
           keyExtractor={(item, index) => index}
-          renderItem={({ item }) => <View style={styles.card}>
+          renderItem={({ item }) =>
+					<Card
+						image={{uri:('https://via.placeholder.com/150')}}>
             <Text style={styles.titulo} onPress={() => this.props.navigation.navigate('Recipe',{id: item._id, titulo: item.titulo,
 							 ingredientes:item.ingredientes, modoPreparo: item.modoPreparo, autor: item.autor}) }>{item.titulo}</Text>
-          </View>}
+          </Card>}
         />
-
-				<Text style={styles.titulo}>
+				<Text style={styles.divisor}>
 					{this.state.message2}
 				</Text>
 
-				<FlatList style={{padding:20}}
+				<FlatList style={styles.lista2}
 					data={this.state.recomend}
 					keyExtractor={(item, index) => index}
-					renderItem={({ item }) => <View style={styles.card}>
-						<Text style={styles.titulo} onPress={() => this.props.navigation.navigate('Recipe',{id: item._id, titulo: item.titulo,
-							 ingredientes:item.ingredientes, modoPreparo: item.modoPreparo, autor: item.autor}) }>{item.titulo}</Text>
-					</View>}
+					renderItem={({ item }) =>
+					<Card
+						image={{uri:('https://via.placeholder.com/150')}}>
+						<View style={styles.div}>
+							<Text style={styles.titulo} onPress={() => this.props.navigation.navigate('Recipe',{id: item._id, titulo: item.titulo,
+								 ingredientes:item.ingredientes, modoPreparo: item.modoPreparo, autor: item.autor}) }>{item.titulo}</Text>
+						</View>
+					</Card>
+					}
 				/>
 
 
@@ -132,8 +138,11 @@ export default class Feed extends React.Component {
 
 
 const styles = StyleSheet.create({
+	div:{
+		flex:1,
+		flexDirection:'row'
+	},
   container: {
-    marginTop: 30,
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
@@ -142,22 +151,39 @@ const styles = StyleSheet.create({
   input:{
     height: 40,
     width: 300,
-    color:'#7920FF',
+    color:'#C198FF',
     marginBottom:20
   },
   link:{
-    color:"#7920FF",
+    color:"#C198FF",
     marginTop:20
   },
   titulo:{
     textAlign: 'left',
     paddingLeft:5,
     fontSize: 20,
-    height: 35,
-    marginBottom: 10,
-    borderBottomWidth:1,
-    borderBottomColor:'#2a2a2a'
   },
+	divisor:{
+		textAlign: 'center',
+		paddingTop:10,
+		paddingRight:30,
+		paddingLeft:30,
+		paddingBottom:10,
+    fontSize: 20,
+		fontWeight: 'bold',
+	},
   card:{
-  }
+		backgroundColor:'#ffffff',
+		shadowOffset:{  width: 10,  height: 10,  },
+		shadowColor: 'black',
+		shadowOpacity: 1.0,
+		alignSelf: 'stretch',
+		padding:5,
+		marginBottom:20,
+  },
+	lista2:{
+		paddingRight:10,
+		paddingLeft:10,
+		maxHeight:650,
+	}
 });

@@ -41,13 +41,20 @@ export const ProfileScreen = StackNavigator({
     screen: EditProfile,
   },
   Favoritos: {
-    screen: Favoritos
+    screen: Favoritos,
   }
 },
 {
-  headerMode: 'none',
   navigationOptions: {
-    headerVisible: false,
+    title:'Perfil',
+    headerStyle: {
+      backgroundColor: '#C198FF',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      color:'#ffffff',
+    },
   }
  }
 );
@@ -57,7 +64,19 @@ export const FeedScreen = StackNavigator({
     screen: Feed
   },
   Recipe: {
-    screen: Recipe
+    screen: Recipe,
+    navigationOptions: {
+      headerVisible: true,
+      title:'Receita',
+      headerStyle: {
+        backgroundColor: '#C198FF',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        color:'#ffffff',
+      },
+    }
   }
 },
 {
@@ -77,12 +96,14 @@ export const SignedIn = TabNavigator({
   // },
   Feed: {
     screen: FeedScreen,
+    headerTintColor: '#fff',
     navigationOptions: {
       tabBarLabel: 'Procura',
     }
   },
   UserProfile: {
     screen: ProfileScreen,
+    headerTintColor: '#fff',
     navigationOptions: {
       tabBarLabel: 'Perfil',
     }
@@ -92,9 +113,9 @@ export const SignedIn = TabNavigator({
   tabBarPosition: 'bottom',
   tabBarOptions:{
     indicatorStyle:{
-          backgroundColor: '#7920FF',
+          backgroundColor: '#C198FF',
     },
-    activeTintColor: '#7920FF',
+    activeTintColor: '#C198FF',
     inactiveTintColor: '#9c5bff',
     style:{
       backgroundColor: "#fff",
@@ -135,7 +156,7 @@ const styles = StyleSheet.create({
     marginBottom:20
   },
   link:{
-    color:"#7920FF",
+    color:"#FFFFFF",
     marginTop:20
   },
 });

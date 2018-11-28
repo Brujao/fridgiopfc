@@ -60,7 +60,7 @@ export default class EditProfile extends React.Component {
           <Button
             onPress={this.editProfile.bind(this)}
             title="Editar"
-            color="#7920FF"
+            color="#C198FF"
           />
 
         <Text style={styles.link} onPress={() => this.props.navigation.navigate('Profile')}>
@@ -113,11 +113,11 @@ const styles = StyleSheet.create({
   input:{
     borderColor: '#a8a8a8',
     width: 300,
-    color:'#7920FF',
+    color:'#C198FF',
     marginBottom:10,
   },
   link:{
-    color:"#7920FF",
+    color:"#C198FF",
     marginTop:10
   },
   textAreaContainer: {
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   textArea: {
-    color:'#7920FF',
+    color:'#C198FF',
     height: 150,
     textAlignVertical: 'top'
   },

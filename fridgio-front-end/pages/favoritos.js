@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput,Button, ScrollView, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, FlatList,
+import { StyleSheet, Text, View, TextInput, ScrollView, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, FlatList,
 	ListView, AsyncStorage} from 'react-native';
+import { Button,Card } from 'react-native-elements';
 console.disableYellowBox = true;
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 
@@ -38,14 +39,16 @@ export default class Favoritos extends React.Component {
 
       <View style={{flex:1}}>
 
-        <FlatList style={{padding:20}}
-          data={this.state.receitas}
-          keyExtractor={(item, index) => index}
-          renderItem={({ item }) => <View style={styles.card}>
-            <Text style={styles.titulo} onPress={() => this.props.navigation.navigate('Recipe',{id: item._id, titulo: item.titulo,
+				<FlatList style={{paddingLeft:10,paddingRight:10}}
+					data={this.state.receitas}
+					keyExtractor={(item, index) => index}
+					renderItem={({ item }) =>
+					<Card
+						image={{uri:('https://via.placeholder.com/150')}}>
+						<Text style={styles.titulo} onPress={() => this.props.navigation.navigate('Recipe',{id: item._id, titulo: item.titulo,
 							 ingredientes:item.ingredientes, modoPreparo: item.modoPreparo, autor: item.autor}) }>{item.titulo}</Text>
-          </View>}
-        />
+					</Card>}
+				/>
 
 				<Text style={styles.link} onPress={() => goBack()}>
           Voltar
@@ -94,21 +97,17 @@ const styles = StyleSheet.create({
   input:{
     height: 40,
     width: 300,
-    color:'#7920FF',
+    color:'#C198FF',
     marginBottom:20
   },
   link:{
-    color:"#7920FF",
+    color:"#C198FF",
     marginTop:20
   },
-  titulo:{
+	titulo:{
     textAlign: 'left',
     paddingLeft:5,
     fontSize: 20,
-    height: 35,
-    marginBottom: 10,
-    borderBottomWidth:1,
-    borderBottomColor:'#2a2a2a'
   },
   card:{
   }

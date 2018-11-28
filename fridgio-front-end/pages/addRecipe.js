@@ -60,14 +60,10 @@ export default class AddRecipe extends React.Component {
 
           <Button
             onPress={this.addRecipe.bind(this)}
-            title="Publicar"
-            color="#7920FF"
+            title="Enviar para Aprovação"
+            color="#C198FF"
           />
         </View>
-
-        <Text style={styles.link} onPress={() => this.props.navigation.navigate('Profile')}>
-          Voltar para o perfil
-        </Text>
 
       </View>
 
@@ -126,11 +122,11 @@ const styles = StyleSheet.create({
   input:{
     height: 35,
     width:300,
-    color:'#7920FF',
+    color:'#C198FF',
     marginBottom:20,
   },
   link:{
-    color:"#7920FF",
+    color:"#C198FF",
     marginTop:10
   },
   textAreaContainer: {

@@ -1,8 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, AsyncStorage, } from 'react-native';
 import {StackNavigator,TabNavigator} from 'react-navigation';
-import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Button,CheckBox,Icon } from 'react-native-elements';
 
 console.disableYellowBox = true;
 
@@ -43,22 +42,27 @@ export default class Recipe extends React.Component {
     const {goBack} = this.props.navigation;
     return (
       <View style={styles.container}>
-
-        <Text style={styles.titulo}>
-          {this.props.navigation.getParam('titulo', '')}
-        </Text>
-        <Text style={styles.ingredientes}>
-          <Text style={{fontWeight:"bold"}}>Ingredientes:</Text>{"\n"}
-          {this.props.navigation.getParam('ingredientes', '')}
-        </Text>
-        <Text style={styles.modoPreparo}>
-          <Text style={{fontWeight:"bold"}}>Modo de Preparo:</Text>{"\n"}
-          {this.props.navigation.getParam('modoPreparo', '')}
-        </Text>
-        <Text style={styles.autor}>
-          <Text style={{fontWeight:"bold"}}>Autor:</Text>{"\n"}
-          {this.props.navigation.getParam('autor', '')}
-        </Text>
+        <Image
+          source={{uri:'https://via.placeholder.com/500x150'}}
+          style={styles.imagem}
+        />
+        <View style={styles.div}>
+          <Text style={styles.titulo}>
+            {this.props.navigation.getParam('titulo', '')}
+          </Text>
+          <Text style={styles.ingredientes}>
+            <Text style={{fontWeight:"bold"}}>Ingredientes:</Text>{"\n"}
+            {this.props.navigation.getParam('ingredientes', '')}
+          </Text>
+          <Text style={styles.modoPreparo}>
+            <Text style={{fontWeight:"bold"}}>Modo de Preparo:</Text>{"\n"}
+            {this.props.navigation.getParam('modoPreparo', '')}
+          </Text>
+          <Text style={styles.autor}>
+            <Text style={{fontWeight:"bold"}}>Autor:</Text>{"\n"}
+            {this.props.navigation.getParam('autor', '')}
+          </Text>
+        </View>
 
         <Button
         onPress={() => this.addToFavorites()}
@@ -146,37 +150,41 @@ const styles = StyleSheet.create({
     flexDirection:'column',
     backgroundColor: '#fff',
     alignItems: 'flex-start',
-    paddingLeft:10
+  },
+  imagem:{
+    alignSelf: 'stretch',
+    flex:1,
+    maxHeight:200,
+  },
+  div:{
+    paddingLeft:10,
   },
   titulo:{
     color: "#000000",
     fontWeight: 'bold',
-    fontSize:35,
+    fontSize:30,
     marginTop:10
   },
   ingredientes:{
-    fontSize:15,
+    fontSize:22,
     color: "#000000",
-    marginTop:40,
-    fontSize:25
+    marginTop:20,
   },
   modoPreparo:{
-    fontSize:15,
+    fontSize:22,
     color: "#000000",
-    marginTop:40,
-    fontSize:25
+    marginTop:20,
   },
   autor:{
-    fontSize:15,
+    fontSize:22,
     color: "#000000",
-    marginTop:40,
-    fontSize:25
+    marginTop:20,
   },
   message:{
     color:"#19b72e",
   },
   link:{
-    color:"#7920FF",
+    color:"#C198FF",
     marginTop:10
   }
 });

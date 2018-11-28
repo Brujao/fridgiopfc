@@ -20,39 +20,39 @@ export default class Register extends React.Component {
 
         <Image
         source={require('../my-icon.png')}
-        style={{resizeMode: 'contain',width:220}}
+        style={styles.image}
         />
 
         <View>
           <TextInput
-          ref={(el) => { this.username = el; }}
-          style={styles.input}
-          onChangeText={(username) => this.setState({username})}
-          value={this.state.username}
-          placeholder="Digite seu username"
+            ref={(el) => { this.username = el; }}
+            style={styles.input}
+            onChangeText={(username) => this.setState({username})}
+            value={this.state.username}
+            placeholder="Digite seu username"
           />
 
           <TextInput
-          ref={(el) => { this.email = el; }}
-          style={styles.input}
-          onChangeText={(email) => this.setState({email})}
-          value={this.state.email}
-          placeholder="Digite seu email"
+            ref={(el) => { this.email = el; }}
+            style={styles.input}
+            onChangeText={(email) => this.setState({email})}
+            value={this.state.email}
+            placeholder="Digite seu email"
           />
 
           <TextInput
-          secureTextEntry={true}
-          ref={(el) => { this.senha = el; }}
-          style={styles.input}
-          onChangeText={(senha) => this.setState({senha})}
-          value={this.state.senha}
-          placeholder="Digite sua senha"
+            secureTextEntry={true}
+            ref={(el) => { this.senha = el; }}
+            style={styles.input}
+            onChangeText={(senha) => this.setState({senha})}
+            value={this.state.senha}
+            placeholder="Digite sua senha"
           />
 
           <Button
             onPress={this.addUser.bind(this)}
             title="Cadastrar"
-            color="#7920FF"
+            color="#C198FF"
           />
 
         </View>
@@ -95,6 +95,7 @@ export default class Register extends React.Component {
       .then((res)=>{
         console.log(res);
       });
+  this.props.navigation.navigate('Login')
   }
 
 }
@@ -112,11 +113,16 @@ const styles = StyleSheet.create({
   input:{
     height: 40,
     width: 300,
-    color:'#7920FF',
+    color:'#C198FF',
     marginBottom:20
   },
   link:{
-    color:"#7920FF",
+    color:"#C198FF",
     marginTop:20
   },
+  image:{
+    maxHeight:150,
+    maxWidth:200,
+    resizeMode:'contain'
+  }
 });

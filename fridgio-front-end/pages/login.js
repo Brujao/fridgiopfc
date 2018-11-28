@@ -32,7 +32,7 @@ export default class Login extends React.Component {
 
         <Image
           source={require('../my-icon.png')}
-          style={{resizeMode: 'contain',width:220}}
+          style={styles.image}
         />
 
         <View>
@@ -60,7 +60,7 @@ export default class Login extends React.Component {
           <Button
             onPress={this.login.bind(this)}
             title="Login"
-            color="#7920FF"
+            color="#C198FF"
           />
 
         </View>
@@ -132,4 +132,9 @@ const styles = StyleSheet.create({
   error:{
     color:"#d60c0c",
   },
+  image:{
+    maxHeight:150,
+    maxWidth:200,
+    resizeMode:'contain'
+  }
 });
