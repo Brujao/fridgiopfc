@@ -198,7 +198,7 @@ app.post('/file_upload', upload.single('file'), function(req, res) {
 
 app.post('/api/aprovacao', upload.single('file'), (req, res) => {
 
-  var file = path.join(__dirname, "./uploads/image.png");
+  var file = "./uploads/image.png";
   fs.rename(req.file.path, file, function(err) {
     if (err) {
       console.log(err);
