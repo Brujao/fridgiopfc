@@ -7,10 +7,10 @@ var fs = require('fs');
 var multer = require('multer');
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '/uploads')
+    cb(null, './uploads')
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname)
+    cb(null, file.fieldname + '-' + Date.now().toISOString().replace(/:/g, '-'))
   }
 });
 
@@ -207,18 +207,18 @@ app.post('/file_upload', upload.single('file'), function(req, res) {
 
 app.post('/api/aprovacao', upload.single('file'), (req, res) => {
 
-  var file = __dirname + '/' + req.file.filename;
-  fs.rename(req.file.path, file, function(err) {
-    if (err) {
-      console.log(err);
-      res.send(500);
-    } else {
-      res.json({
-        message: 'File uploaded successfully',
-        filename: req.file.filename
-      });
-    }
-  });
+  // var file = __dirname + '/' + req.file.filename;
+  // fs.rename(req.file.path, file, function(err) {
+  //   if (err) {
+  //     console.log(err);
+  //     res.send(500);
+  //   } else {
+  //     res.json({
+  //       message: 'File uploaded successfully',
+  //       filename: req.file.filename
+  //     });
+  //   }
+  // });
 
 	var receita = new Receita();
 
