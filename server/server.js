@@ -205,9 +205,9 @@ app.get('/api/aprovacao',(req,res)=>{
 //   });
 // });
 
-app.post('/api/aprovacao',  (req, res) => {
+app.post('/api/aprovacao', (req, res) => {
 
-  // var file = __dirname + '/' + req.file.filename + '.png';
+  // var file = __dirname + '/' + req.file.filename + ;
   // fs.rename(req.file.path, file, function(err) {
   //   if (err) {
   //     console.log(err);
