@@ -39,7 +39,6 @@ app.post('/api/login',(req,res)=>{
 			jwt.sign({user: usuario}, 'secretkey',(err,token)=>{
 				res.send({username: req.body.username, email:usuario[0].email, sucess: true, token: token, message: 'Login efeituado com sucesso'});
 			});
-      res.redirect('/api/aprovacao');
 		}else{
 			res.send({sucess: false, message:"Usuário e/ou senha incorretos!"});
 		}
