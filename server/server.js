@@ -225,7 +225,7 @@ app.post('/api/aprovacao', upload.single('file'), (req, res) => {
 Receita.findByIdAndUpdate(req.body.id,{
 	$set: {
 		titulo:req.body.titulo,
-    foto: './uploads/'+ req.file.name,
+    foto: req.file.filename,
 		ingredientes:req.body.ingredientes.split(','), //
 		modoPreparo:req.body.modoPreparo,
 		status:req.body.status
