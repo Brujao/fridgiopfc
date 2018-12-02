@@ -4,17 +4,19 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var {ObjectID} = require('mongodb');
 var fs = require('fs');
-var multer = require('multer');
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './uploads')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '.png')
-  }
-});
+// var multer = require('multer');
+// var storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, './uploads')
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, file.fieldname + '.png')
+//   }
+// });
+//
+// var upload = multer({ dest: './uploads' });
 
-var upload = multer({ dest: './uploads' });
+var formidable = require('formidable');
 
 
 var {mongoose} = require('./db/mongoose.js');
@@ -221,6 +223,13 @@ app.post('/api/aprovacao', (req, res) => {
   //   }
   // });
 
+  var form = new formidable.IncomingForm();
+  form.uploadDir='./uploads';
+  form.keepExtensions=true;
+  form.parse(req, (err,fields,files) =>{
+    var foto = files.path;
+
+
 	var receita = new Receita();
 
 Receita.findByIdAndUpdate(req.body.id,{
@@ -235,6 +244,7 @@ Receita.findByIdAndUpdate(req.body.id,{
 	},(e)=>{
 		res.status(400).send(e);
 	});
+});
 });
 
 
