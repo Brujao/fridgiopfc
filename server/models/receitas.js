@@ -7,6 +7,11 @@ var receitaSchema = mongoose.Schema({
   		minlength: 1,
   		trim: true
   	},
+    foto: {
+      type: String,
+      minlength: 1,
+      trim: true
+    }
     ingredientes: {
       type: [String],
       required: true,
