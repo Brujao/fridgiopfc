@@ -15,7 +15,7 @@ var storage = multer.diskStorage({
   }
 });
 
-var upload = multer({ storage }).single('upload');
+var upload = multer({ storage });
 
 
 
@@ -207,32 +207,23 @@ app.get('/api/aprovacao',(req,res)=>{
 //   });
 // });
 
-app.post('/api/aprovacao', (req, res) => {
+app.post('/api/aprovacao',upload.single('upload'), (req, res) => {
 
-  upload(req,res,(err)=>{
-    if (err){
-      res.json({
-        message: err
-      });
-    }else {
+        var receita = new Receita();
 
-      var receita = new Receita();
-
-    Receita.findByIdAndUpdate(req.body.id,{
-      $set: {
-        titulo:req.body.titulo,
-        foto: req.file.path,
-        ingredientes:req.body.ingredientes.split(','), //
-        modoPreparo:req.body.modoPreparo,
-        status:req.body.status
-      }
-    }).then(()=>{
-         res.redirect('/api/aprovacao');
-      },(e)=>{
-        res.status(400).send(e);
-      });
-    }
-  });
+      Receita.findByIdAndUpdate(req.body.id,{
+        $set: {
+          titulo:req.body.titulo,
+          foto: req.file.path,
+          ingredientes:req.body.ingredientes.split(','), //
+          modoPreparo:req.body.modoPreparo,
+          status:req.body.status
+        }
+      }).then(()=>{
+           res.redirect('/api/aprovacao');
+        },(e)=>{
+          res.status(400).send(e);
+        });
 
 
 });
