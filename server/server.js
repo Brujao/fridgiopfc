@@ -207,7 +207,7 @@ app.get('/api/aprovacao',(req,res)=>{
 //   });
 // });
 
-app.post('/api/aprovacao',upload.single('upload'), (req, res) => {
+app.post('/api/aprovacao', (req, res) => {
 
         var receita = new Receita();
 
