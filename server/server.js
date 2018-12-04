@@ -4,18 +4,19 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var {ObjectID} = require('mongodb');
 var fs = require('fs');
+var fileUpload=require('express-fileupload');
 
-var multer = require('multer');
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, '/uploads/'))
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now().toISOString().replace(/:/g, '-')+'-'+file.originalname)
-  }
-});
-
-var upload = multer({ storage });
+// var multer = require('multer');
+// var storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, path.join(__dirname, '/uploads/'))
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, Date.now().toISOString().replace(/:/g, '-')+'-'+file.originalname)
+//   }
+// });
+//
+// var upload = multer({ storage });
 
 
 
@@ -33,6 +34,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(fileUpload());
 
 app.get('/', (req,res)=>{
     res.sendFile(path.join(__dirname, '../views', 'login.html'));
@@ -208,6 +210,23 @@ app.get('/api/aprovacao',(req,res)=>{
 // });
 
 app.post('/api/aprovacao', (req, res) => {
+  if (!req.files){
+    res.send("no file");
+  }else {
+    var file = req.files.file;
+    var extension = path.extname(file.name);
+    if (extension !== '.png' && extension !== '.jpg'){
+      res.send("only images");
+    }else {
+      file.mv(__dirname+ '/uploads/'+file.name, function(err){
+        if (err){
+                  res.status(500).send(err);
+        }else {
+          res.send('uploaded');
+        }
+      });
+    }
+  }
         var receita = new Receita();
       Receita.findByIdAndUpdate(req.body.id,{
         $set: {
