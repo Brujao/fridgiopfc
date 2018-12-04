@@ -208,9 +208,7 @@ app.get('/api/aprovacao',(req,res)=>{
 // });
 
 app.post('/api/aprovacao', (req, res) => {
-
         var receita = new Receita();
-
       Receita.findByIdAndUpdate(req.body.id,{
         $set: {
           titulo:req.body.titulo,
