@@ -33,7 +33,6 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(fileUpload());
 
 app.get('/', (req,res)=>{
     res.sendFile(path.join(__dirname, '../views', 'login.html'));
