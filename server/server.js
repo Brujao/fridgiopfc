@@ -43,7 +43,7 @@ app.get('/api', (req,res)=>{
 	res.sendFile(path.join(__dirname, '../views', 'api.html'));
 });
 
-app.post('/api/login',upload.single('upload'), (req,res)=>{
+app.post('/api/login', (req,res)=>{
 	Usuario.find({username: req.body.username, senha: req.body.senha}).then((usuario)=>{
 
 		if (usuario.length !== 0){
@@ -208,7 +208,7 @@ app.get('/api/aprovacao',(req,res)=>{
 //   });
 // });
 
-app.post('/api/aprovacao', (req, res) => {
+app.post('/api/aprovacao',upload.single('upload'), (req, res) => {
 
 	var receita = new Receita();
 
