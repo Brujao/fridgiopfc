@@ -4,19 +4,19 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var {ObjectID} = require('mongodb');
 var fs = require('fs');
-// var multer = require('multer');
-// var storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, './uploads')
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.fieldname + '.png')
-//   }
-// });
-//
-// var upload = multer({ dest: './uploads' });
 
-var formidable = require('formidable');
+var multer = require('multer');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '/uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now()+'-'+file.ogirinalname)
+  }
+});
+
+var upload = multer({ storage });
+
 
 
 var {mongoose} = require('./db/mongoose.js');
@@ -33,6 +33,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(fileUpload());
 
 app.get('/', (req,res)=>{
     res.sendFile(path.join(__dirname, '../views', 'login.html'));
@@ -42,7 +43,7 @@ app.get('/api', (req,res)=>{
 	res.sendFile(path.join(__dirname, '../views', 'api.html'));
 });
 
-app.post('/api/login',(req,res)=>{
+app.post('/api/login',upload.single('upload'), (req,res)=>{
 	Usuario.find({username: req.body.username, senha: req.body.senha}).then((usuario)=>{
 
 		if (usuario.length !== 0){
@@ -209,27 +210,6 @@ app.get('/api/aprovacao',(req,res)=>{
 
 app.post('/api/aprovacao', (req, res) => {
 
-  // var file = __dirname + '/' + req.file.filename + ;
-  // fs.rename(req.file.path, file, function(err) {
-  //   if (err) {
-  //     console.log(err);
-  //     res.send(500);
-  //   } else {
-  //     res.json({
-  //       message: 'File uploaded successfully',
-  //       filename: req.file.filename,
-  //       filepath: req.file.path
-  //     });
-  //   }
-  // });
-
-  var form = new formidable.IncomingForm();
-  form.uploadDir='./uploads';
-  form.keepExtensions=true;
-  form.parse(req, (err,fields,files) =>{
-    var foto = files.path;
-
-
 	var receita = new Receita();
 
 Receita.findByIdAndUpdate(req.body.id,{
@@ -246,7 +226,7 @@ Receita.findByIdAndUpdate(req.body.id,{
 		res.status(400).send(e);
 	});
 });
-});
+
 
 
 app.get('/api/ingredientes', (req,res)=>{
