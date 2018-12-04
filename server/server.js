@@ -207,7 +207,19 @@ app.get('/api/aprovacao',(req,res)=>{
 //   });
 // });
 
-app.post('/api/aprovacao',upload.single('upload'), (req, res) => {
+app.post('/api/aprovacao', (req, res) => {
+
+  upload(req,res,(err)=>{
+    if (err){
+      res.json({
+        message: err
+      });
+    }else {
+      res.json({
+        message: 'Sucess.'
+      })
+    }
+  });
 
 	var receita = new Receita();
 
