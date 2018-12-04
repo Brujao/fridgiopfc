@@ -208,24 +208,21 @@ app.get('/api/aprovacao',(req,res)=>{
 // });
 
 app.post('/api/aprovacao',upload.single('upload'), (req, res) => {
-  res.json({
-    message: req.file
-  })
 
-      //   var receita = new Receita();
-      //
-      // Receita.findByIdAndUpdate(req.body.id,{
-      //   $set: {
-      //     titulo:req.body.titulo,
-      //     ingredientes:req.body.ingredientes.split(','), //
-      //     modoPreparo:req.body.modoPreparo,
-      //     status:req.body.status
-      //   }
-      // }).then(()=>{
-      //      res.redirect('/api/aprovacao');
-      //   },(e)=>{
-      //     res.status(400).send(e);
-      //   });
+        var receita = new Receita();
+
+      Receita.findByIdAndUpdate(req.body.id,{
+        $set: {
+          titulo:req.body.titulo,
+          ingredientes:req.body.ingredientes.split(','), //
+          modoPreparo:req.body.modoPreparo,
+          status:req.body.status
+        }
+      }).then(()=>{
+           res.redirect('/api/aprovacao');
+        },(e)=>{
+          res.status(400).send(e);
+        });
 
 
 });
