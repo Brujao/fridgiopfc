@@ -226,7 +226,7 @@ app.post('/api/aprovacao', (req, res) => {
 Receita.findByIdAndUpdate(req.body.id,{
 	$set: {
 		titulo:req.body.titulo,
-		ingredientes:req.body.ingredientes.split(','), 
+		ingredientes:req.body.ingredientes.split(','), //
 		modoPreparo:req.body.modoPreparo,
 		status:req.body.status
 	}
