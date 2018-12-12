@@ -23,3 +23,16 @@ allprojects {
         }
     }
 }
+
+subprojects {
+    if (project.name.contains('react-native-image-picker') || 
+        project.name.contains('react-native-vector-icons') ||
+	   project.name.contains('rn-fetch-blob')) {
+        buildscript {
+            repositories {
+                jcenter()
+                maven { url "https://dl.bintray.com/android/android-tools/"  }
+            }
+        }
+    }
+}

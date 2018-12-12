@@ -26,7 +26,7 @@ export default class Feed extends React.Component {
 
   componentWillMount(){
 
-      fetch("https://cursed.studio/api/ingredientes", {
+      fetch("http://192.168.41.220:3000/api/ingredientes", {
          method: "GET",
          headers: {
            'Accept': 'application/json',
@@ -41,6 +41,7 @@ export default class Feed extends React.Component {
     }
 
   render() {
+
     return (
 
       <View style={{flex:1}}>
@@ -68,9 +69,10 @@ export default class Feed extends React.Component {
           keyExtractor={(item, index) => index}
           renderItem={({ item }) =>
 					<Card
-						image={{uri:('https://via.placeholder.com/150')}}>
+						image={{uri:("http://192.168.15.2:3000" + item.foto)}}>
             <Text style={styles.titulo} onPress={() => this.props.navigation.navigate('Recipe',{id: item._id, titulo: item.titulo,
-							 ingredientes:item.ingredientes, modoPreparo: item.modoPreparo, autor: item.autor}) }>{item.titulo}</Text>
+							 ingredientes:item.ingredientes, modoPreparo: item.modoPreparo, autor: item.autor, foto: item.foto,
+						 porcoes: item.porcoes, tempoPreparo: item.tempoPreparo}) }>{item.titulo}</Text>
           </Card>}
         />
 				<Text style={styles.divisor}>
@@ -82,10 +84,11 @@ export default class Feed extends React.Component {
 					keyExtractor={(item, index) => index}
 					renderItem={({ item }) =>
 					<Card
-						image={{uri:('https://via.placeholder.com/150')}}>
+						image={{uri:("http://192.168.15.2:3000" + item.foto)}}>
 						<View style={styles.div}>
 							<Text style={styles.titulo} onPress={() => this.props.navigation.navigate('Recipe',{id: item._id, titulo: item.titulo,
-								 ingredientes:item.ingredientes, modoPreparo: item.modoPreparo, autor: item.autor}) }>{item.titulo}</Text>
+								 ingredientes:item.ingredientes, modoPreparo: item.modoPreparo, autor: item.autor, foto: item.foto,
+							 porcoes: item.porcoes, tempoPreparo: item.tempoPreparo}) }>{item.titulo}</Text>
 						</View>
 					</Card>
 					}
@@ -105,7 +108,7 @@ export default class Feed extends React.Component {
       "query": items
     }
 
-        fetch("https://cursed.studio/api/query", {
+        fetch("http://192.168.41.220:3000/api/query", {
            method: "POST",
            headers: {
              'Accept': 'application/json',

@@ -44,9 +44,10 @@ export default class Favoritos extends React.Component {
 					keyExtractor={(item, index) => index}
 					renderItem={({ item }) =>
 					<Card
-						image={{uri:('https://via.placeholder.com/150')}}>
+						image={{uri:("http://192.168.41.220:3000" + item.foto)}}>
 						<Text style={styles.titulo} onPress={() => this.props.navigation.navigate('Recipe',{id: item._id, titulo: item.titulo,
-							 ingredientes:item.ingredientes, modoPreparo: item.modoPreparo, autor: item.autor}) }>{item.titulo}</Text>
+							 ingredientes:item.ingredientes, modoPreparo: item.modoPreparo, autor: item.autor,foto: item.foto,
+						 porcoes: item.porcoes, tempoPreparo: item.tempoPreparo}) }>{item.titulo}</Text>
 					</Card>}
 				/>
 
@@ -64,7 +65,7 @@ export default class Favoritos extends React.Component {
       "usuario": this.props.navigation.getParam('username', '')
     }
 
-        fetch("https://cursed.studio/api/receitas/getFavoritesProfile", {
+        fetch("http://192.168.41.220:3000/api/receitas/getFavoritesProfile", {
            method: "POST",
            headers: {
              'Accept': 'application/json',

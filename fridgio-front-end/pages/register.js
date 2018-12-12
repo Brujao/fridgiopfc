@@ -81,7 +81,7 @@ export default class Register extends React.Component {
         "status": 0
     }
 
-      fetch("https://cursed.studio/api/usuarios/add", {
+      fetch("http://192.168.41.220:3000/api/usuarios/add", {
          method: "POST",
          headers: {
            'Accept': 'application/json',

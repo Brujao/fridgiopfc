@@ -143,6 +143,9 @@ dependencies {
     compile "com.facebook.react:react-native:+"
     compile project(':react-native-vector-icons')
     compile project(path: ':react-native-vector-icons')
+	compile project(':react-native-image-picker')
+compile project(':rn-fetch-blob') 
+compile project(':react-native-fileupload')
 }// From node_modules
 
 

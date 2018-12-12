@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, AsyncStorage, } from 'react-native';
+import { StyleSheet, Text, View, TextInput, FlatList, ActivityIndicator, TouchableOpacity, Image, KeyboardAvoidingView, AsyncStorage, ScrollView} from 'react-native';
 import {StackNavigator,TabNavigator} from 'react-navigation';
 import { Button,CheckBox,Icon } from 'react-native-elements';
 
@@ -31,6 +31,7 @@ export default class Recipe extends React.Component {
     });
 
 
+
   }
 
   componentDidMount(){
@@ -40,10 +41,13 @@ export default class Recipe extends React.Component {
 
   render() {
     const {goBack} = this.props.navigation;
+    const ingredientes = this.props.navigation.getParam('ingredientes', '');
     return (
       <View style={styles.container}>
+
+
         <Image
-          source={{uri:'https://via.placeholder.com/500x150'}}
+          source={{uri:("http://192.168.15.2:3000" + this.props.navigation.getParam('foto', ''))}}
           style={styles.imagem}
         />
         <View style={styles.div}>
@@ -52,11 +56,25 @@ export default class Recipe extends React.Component {
           </Text>
           <Text style={styles.ingredientes}>
             <Text style={{fontWeight:"bold"}}>Ingredientes:</Text>{"\n"}
-            {this.props.navigation.getParam('ingredientes', '')}
+            {
+              ingredientes.map((x)=>{
+                return (<Text>{x}{"\n"}</Text>);
+              })
+            }
           </Text>
           <Text style={styles.modoPreparo}>
             <Text style={{fontWeight:"bold"}}>Modo de Preparo:</Text>{"\n"}
             {this.props.navigation.getParam('modoPreparo', '')}
+          </Text>
+
+          <Text style={styles.modoPreparo}>
+            <Text style={{fontWeight:"bold"}}>Tempo de Preparo:</Text>{"\n"}
+            {this.props.navigation.getParam('tempoPreparo', '')}
+          </Text>
+
+          <Text style={styles.modoPreparo}>
+            <Text style={{fontWeight:"bold"}}>Número de porções:</Text>{"\n"}
+            {this.props.navigation.getParam('porcoes', '')}
           </Text>
           <Text style={styles.autor}>
             <Text style={{fontWeight:"bold"}}>Autor:</Text>{"\n"}
@@ -88,7 +106,7 @@ export default class Recipe extends React.Component {
       "usuario": this.state.username
     }
 
-    fetch("https://cursed.studio/api/receitas/getFavorites", {
+    fetch("http://192.168.15.2:3000/api/receitas/getFavorites", {
        method: "POST",
        headers: {
          'Accept': 'application/json',
@@ -120,7 +138,7 @@ export default class Recipe extends React.Component {
       "usuario": this.state.username
     }
 
-    fetch("https://cursed.studio/api/receitas/edit", {
+    fetch("http://192.168.15.2:3000/api/receitas/edit", {
        method: "POST",
        headers: {
          'Accept': 'application/json',
@@ -163,28 +181,28 @@ const styles = StyleSheet.create({
     color: "#000000",
     fontWeight: 'bold',
     fontSize:30,
-    marginTop:10
+    marginTop:5
   },
   ingredientes:{
     fontSize:22,
     color: "#000000",
-    marginTop:20,
+    marginTop:5,
   },
   modoPreparo:{
     fontSize:22,
     color: "#000000",
-    marginTop:20,
+    marginTop:5,
   },
   autor:{
     fontSize:22,
     color: "#000000",
-    marginTop:20,
+    marginTop:5,
   },
   message:{
     color:"#19b72e",
   },
   link:{
     color:"#C198FF",
-    marginTop:10
+    marginTop:2
   }
 });

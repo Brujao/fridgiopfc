@@ -4,6 +4,7 @@ import {StackNavigator,TabNavigator} from 'react-navigation';
 import { Button,Avatar,Card } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+
 console.disableYellowBox = true;
 
 import Register from './register.js'
@@ -73,9 +74,14 @@ export default class Profile extends React.Component {
   					</Card>}
   				/>
 
-          <Text onPress={()=> this.openFavorites()} style={styles.verTodos}>
-          Ver todos
-          </Text>
+
+          <Button
+            style={styles.button}
+            onPress={()=> this.openFavorites()}
+            title="Ver favoritos"
+            backgroundColor="#C198FF"
+            containerViewStyle={{width: '100%'}}
+          />
 
           <Button
             style={styles.button}
@@ -110,7 +116,7 @@ export default class Profile extends React.Component {
       "usuario": "marcela"
     }
 
-        fetch("https://cursed.studio/api/receitas/getFavoritesProfile", {
+        fetch("http://192.168.41.220:3000/api/receitas/getFavoritesProfile", {
            method: "POST",
            headers: {
              'Accept': 'application/json',
