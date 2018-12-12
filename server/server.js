@@ -4,19 +4,14 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var {ObjectID} = require('mongodb');
 var fs = require('fs');
-var fileUpload=require('express-fileupload');
+var fileUpload = require('express-fileupload');
+// var formidable = require('formidable');
+// var formidableMiddleware = require('express-formidable');
+
 
 // var multer = require('multer');
-// var storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, path.join(__dirname, '/uploads/'))
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, Date.now().toISOString().replace(/:/g, '-')+'-'+file.originalname)
-//   }
-// });
 //
-// var upload = multer({ storage });
+// var upload = multer({ dest: '../public/uploads' });
 
 
 
@@ -30,11 +25,11 @@ const port = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 
-
+app.use(fileUpload());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(fileUpload());
+// app.use(formidableMiddleware({uploadDir: '../public/uploads/'}));
 
 app.get('/', (req,res)=>{
     res.sendFile(path.join(__dirname, '../views', 'login.html'));
@@ -210,36 +205,55 @@ app.get('/api/aprovacao',(req,res)=>{
 // });
 
 app.post('/api/aprovacao', (req, res) => {
-  if (!req.files){
-    res.send("no file");
-  }else {
-    var file = req.files.file;
-    var extension = path.extname(file.name);
-    if (extension !== '.png' && extension !== '.jpg'){
-      res.send("only images");
+  if (req.body.botao == 1){
+    if (req.files.file == null ){
+      res.send("no file");
     }else {
-      file.mv(__dirname+ '/uploads/'+file.name, function(err){
-        if (err){
-                  res.status(500).send(err);
-        }else {
-          res.send('uploaded');
-        }
-      });
-    }
-  }
-        var receita = new Receita();
-      Receita.findByIdAndUpdate(req.body.id,{
-        $set: {
-          titulo:req.body.titulo,
-          ingredientes:req.body.ingredientes.split(','), //
-          modoPreparo:req.body.modoPreparo,
-          status:req.body.status
-        }
-      }).then(()=>{
-           res.redirect('/api/aprovacao');
-        },(e)=>{
-          res.status(400).send(e);
+      var file = req.files.file;
+      var extension = path.extname(file.name);
+      if (extension !== '.png' && extension !== '.jpg'){
+        res.send("only images");
+      }else {
+        file.mv('../public/uploads/'+file.name, function(err){
+          if (err){
+                    res.status(500).send(err);
+          }else {
+
+          }
         });
+      }
+    }
+          var receita = new Receita();
+        Receita.findByIdAndUpdate(req.body.id,{
+          $set: {
+            titulo:req.body.titulo,
+            foto: path.join('/uploads/' + file.name),
+            ingredientes:req.body.ingredientes.split(','), //
+            modoPreparo:req.body.modoPreparo,
+            status:req.body.status,
+            porcoes: req.body.porcoes,
+            tempoPreparo: req.body.tempoPreparo
+          }
+        }).then(()=>{
+             res.redirect('/api/aprovacao');
+          },(e)=>{
+            res.status(400).send(e);
+          });
+
+  }else{
+
+
+    var receita = new Receita();
+    Receita.remove({ _id: req.body.id }, function(err) {
+
+    }).then(()=>{
+         res.redirect('/api/aprovacao');
+      },(e)=>{
+        res.status(400).send(e);
+      });
+  }
+
+
 
 
 });
@@ -310,20 +324,24 @@ app.get('/api/receitas', (req,res)=>{
 // 	})
 // });
 
-
+// upload.single('foto'),
 app.post('/api/receitas/add', (req, res) => {
+
+
 	var receita = new Receita();
 	receita.titulo = req.body.titulo;
 	receita.ingredientes = req.body.ingredientes;
 	receita.modoPreparo = req.body.modoPreparo;
-	receita.status = req.body.status;
+  receita.foto = req.body.foto;
+	receita.status = 0;
 	receita.autor = req.body.autor;
   receita.favoritos = req.body.favoritos;
-
+  receita.porcoes = req.body.porcoes;
+  receita.tempoPreparo = req.body.tempoPreparo;
 	receita.save().then(()=>{
-
+    console.log('foi');
 	},(e)=>{
-		res.status(400).send(e);
+    console.log(e);
 	});
 });
 

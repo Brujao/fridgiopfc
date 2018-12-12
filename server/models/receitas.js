@@ -23,6 +23,18 @@ var receitaSchema = mongoose.Schema({
       minlength: 1,
       trim: true
     },
+    tempoPreparo: {
+      type: String,
+      required: true,
+      minlength: 1,
+      trim: true
+    },
+    porcoes: {
+      type: String,
+      required: true,
+      minlength: 1,
+      trim: true
+    },
     status:{
       type:Number,
       required: true,

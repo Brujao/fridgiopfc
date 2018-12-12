@@ -23,18 +23,26 @@
           <input class="form-control mb-3" type="text" placeholder="Ingredientes" name="ingredientes" value="<%= receitas[0].ingredientes %>">
             Modo de Preparo
           <input class="form-control" type="text" placeholder="Modo de Preparo" name="modoPreparo" value="<%= receitas[0].modoPreparo %>">
+            Tempo de Preparo
+          <input class="form-control" type="text" placeholder="Tempo de Preparo" name="tempoPreparo" value="<%= receitas[0].tempoPreparo %>">
+            Porções
+          <input class="form-control" type="text" placeholder="Porções" name="porcoes" value="<%= receitas[0].porcoes %>">
           <input type="file" name="file">
           <input type="hidden" name="status" value="1">
         </div>
         <div class="col-md-6">
           Foto da Receita
-          <img src="" alt="" class="recipe-image">
+          <img src="<%= receitas[0].foto %>" class="recipe-image">
         </div>
       </div>
 
       <button type="button" class="btn btn-block btn-style mb-3 mt-3" data-toggle="modal" data-target="#exampleModalCenter">
         Aprovar
       </button>
+      <button type="button" class="btn btn-block btn-style mb-3 mt-3" data-toggle="modal" data-target="#exampleModalCenter2">
+        Recusar
+      </button>
+
 
       <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -50,7 +58,27 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-style-modal-secondary" data-dismiss="modal">Fechar</button>
-              <button type="submit" class="btn btn-style-modal">Confirmar</button>
+              <button type="submit" name="botao"  value="1" class="btn btn-style-modal">Confirmar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Confirmação de dados</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Confirma que deseja recusar esta receita?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-style-modal-secondary" data-dismiss="modal">Fechar</button>
+              <button type="submit" name="botao"  value="2" class="btn btn-style-modal">Confirmar</button>
             </div>
           </div>
         </div>
